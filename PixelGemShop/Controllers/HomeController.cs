@@ -14,5 +14,11 @@ namespace PixelGemShop.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "User")]
+        public ActionResult ProvaUser()
+        {
+            return View();
+        }
     }
 }

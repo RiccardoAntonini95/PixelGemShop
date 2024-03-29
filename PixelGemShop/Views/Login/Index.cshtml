@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (TempData["Success"] != null)  //Feedback positivo riuscita operazione
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Fail"] != null) //Feedback negativo operazione fallita
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Fail"]
+    </div>
+}
+
+
+@if (!User.Identity.IsAuthenticated)
+{
+
+    <h2 class="text-center mb-5">Welcome, sign up or login if you own an account</h2>
+    <div class="container d-flex align-content-center align-items-center flex-column">
+        @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "btn btn-success text-white m-2" })
+        @Html.ActionLink("Login", "Login", "Login", null, new { @class = "btn btn-primary text-white m-2" })
+    </div>
+}
+else
+{
+    <h2>You're logged in as User number @User.Identity.Name </h2>
+    <p>Logout: </p>
+    <form action="@Url.Action("Logout", "Login")" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+}
+

@@ -33,7 +33,7 @@ namespace PixelGemShop.Models
 
         [Required]
         [StringLength(10)]
-        public string Role { get; set; }
+        public string Role { get; set; } = "User";
 
         [Required]
         [StringLength(20)]
