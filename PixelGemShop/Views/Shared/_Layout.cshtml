@@ -1,7 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+}
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - Pixel Gem Shop</title>
@@ -20,8 +23,33 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    @if (User.IsInRole("Admin"))//LINK SOLO PER GLI ADMIN
+                    {
+                        @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    }
+                    @if (User.IsInRole("User"))//LINK SOLO PER GLI USER
+                    {
+                        @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    }
                 </ul>
+                @if (authCookie == null)
+                {
+                    <ul class="navbar-nav">
+                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn btn-success" })</li>
+                    </ul>
+                }
+                @if (authCookie != null)
+                {
+                    <ul class="navbar-nav">
+                        <li>
+                            <form action="@Url.Action("Logout", "Login")" method="post">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
