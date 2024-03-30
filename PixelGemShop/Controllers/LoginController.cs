@@ -27,14 +27,14 @@ namespace PixelGemShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "Username, Password, Email, Role, FirstName, LastName")] Users newUser) //cambiare
+        public ActionResult SignUp([Bind(Include = "Username, Password, Email, Role, FirstName, LastName")] Users newUser)
         {
             using (var db = new DBContext())
             {
                 if (ModelState.IsValid)
                 {
                     try
-                    {
+                    { //TODO: nuovo user che si registra genera un suo carrello nel database 
                         db.Users.Add(newUser);
                         db.SaveChanges();
                     }
