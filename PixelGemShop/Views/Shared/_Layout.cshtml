@@ -42,6 +42,9 @@
                 @if (authCookie != null)
                 {
                     <ul class="navbar-nav">
+                        <li class="text-white">
+                            Benvenuto @Session["Username"] @*all'interno dell'if non appare se non sei loggato quindi non serve svuotare la session*@
+                        </li> @*TODO: Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
                         <li>
                             <form action="@Url.Action("Logout", "Login")" method="post">
                                 @Html.AntiForgeryToken()

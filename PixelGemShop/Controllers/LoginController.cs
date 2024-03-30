@@ -75,6 +75,7 @@ namespace PixelGemShop.Controllers
                         {
                             FormsAuthentication.SetAuthCookie(loggedUser.IdUser.ToString(), true);//salvo l'id ottenuto dalla select e lo passo al rolemanager
                             TempData["Success"] = "Logged in successfully";
+                            Session["Username"] = loggedUser.FirstName;
                             return RedirectToAction("Index", "Home");
                         }
                     }
