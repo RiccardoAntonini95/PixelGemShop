@@ -2,11 +2,13 @@
     var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 }
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Unearth Gaming Gems at Pixel Gem Shop: Where Every Purchase is Sparkling Treasure!" />
+    <meta name="keywords" content="gaming, pixelgem, shop, videogames, console" />
     <title>@ViewBag.Title - Pixel Gem Shop</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -26,6 +28,7 @@
 
                     @if (User.IsInRole("Admin"))//LINK SOLO PER GLI ADMIN
                     {
+                        // TODO: Dropdown link con le crud dei prodotti
                         @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
                     }
                     @if (User.IsInRole("User"))//LINK SOLO PER GLI USER
