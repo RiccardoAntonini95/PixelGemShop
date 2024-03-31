@@ -119,14 +119,49 @@ namespace PixelGemShop.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products)
+        public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products, HttpPostedFileBase Image)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(products).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
+            //return View(products);
+
+            if (products == null)
+            {
+                return HttpNotFound();
+            }
+
             if (ModelState.IsValid)
             {
+                if (Image != null && Image.ContentLength > 0)
+                {
+                    // Verifica che il file sia un'immagine
+                    if (Image.ContentType.ToLower().StartsWith("image/"))
+                    {
+                        // Sovrascrivi l'immagine esistente con la nuova
+                        products.Image = Path.GetFileName(Image.FileName);
+
+                        // Salva il file sul server
+                        var imagePath = Path.Combine(Server.MapPath("~/Uploads"), products.Image);
+                        Image.SaveAs(imagePath);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Image", "Il file deve essere un'immagine.");
+                        ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
+                        return View(products);
+                    }
+                }
+
                 db.Entry(products).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
             return View(products);
         }
