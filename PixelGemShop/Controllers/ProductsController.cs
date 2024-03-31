@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,12 +47,47 @@ namespace PixelGemShop.Controllers
         // POST: Products/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Products.Add(products);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
+        //    return View(products);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products)
+        public ActionResult Create(Products products, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                if (Image != null && Image.ContentLength > 0)
+                {
+                    // Verifica che il file sia un'immagine
+                    if (Image.ContentType.ToLower().StartsWith("image/"))
+                    {
+                        // Imposta la proprietà dell'immagine del prodotto con il nome del file
+                        products.Image = Path.GetFileName(Image.FileName);
+
+                        // Salva il file sul server
+                        var imagePath = Path.Combine(Server.MapPath("~/Uploads"), products.Image);
+                        Image.SaveAs(imagePath);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Image", "Il file deve essere un'immagine.");
+                        ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
+                        return View(products);
+                    }
+                }
+
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,6 +96,7 @@ namespace PixelGemShop.Controllers
             ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
             return View(products);
         }
+
 
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)

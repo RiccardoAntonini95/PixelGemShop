@@ -30,26 +30,7 @@
                     {
                         // TODO: Dropdown link con le crud dei prodotti
                         @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Link
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="@Url.Action("Create", "Products")">Add new product</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Products")">Product list</a></li>
-                            </ul>
-                        </li>
+                        <li>@Html.ActionLink("Manage Products", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                     @if (User.IsInRole("User"))//LINK SOLO PER GLI USER
                     {
@@ -64,10 +45,14 @@
                 }
                 @if (authCookie != null)
                 {
-                    <ul class="navbar-nav">
-                        <li class="text-white">
-                            Benvenuto @Session["Username"] @*all'interno dell'if non appare se non sei loggato quindi non serve svuotare la session*@
-                        </li> @*TODO: Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
+                    <ul class="navbar-nav align-items-center">
+                        @if (Session["Username"] != null)
+                        {
+                            <li class="text-white">
+                                Benvenuto @Session["Username"] @*all'interno dell'if non appare se non sei loggato quindi non serve svuotare la session*@
+                            </li>
+                            @*TODO: Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
+                        }
                         <li>
                             <form action="@Url.Action("Logout", "Login")" method="post">
                                 @Html.AntiForgeryToken()
@@ -86,7 +71,6 @@
             <p>&copy; @DateTime.Now.Year - Pixel Gem Shop</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

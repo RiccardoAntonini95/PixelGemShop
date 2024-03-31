@@ -50,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            <img src="@Url.Content("~/Uploads/" + item.Image)" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Stock)
