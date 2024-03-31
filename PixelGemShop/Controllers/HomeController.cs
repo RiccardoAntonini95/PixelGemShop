@@ -13,7 +13,8 @@ namespace PixelGemShop.Controllers
         DBContext db = new DBContext();
         public ActionResult Index()
         {
-            return View();
+            var products = db.Products.Include(p => p.Categories).FirstOrDefault(); //seleziona 3 banner per le categorie
+            return View(products);
         }
 
         [Authorize(Roles = "User")]

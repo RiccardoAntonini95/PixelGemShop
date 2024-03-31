@@ -11,3 +11,33 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@keyframes gemAnimation {
+    0% {
+        stroke: #9966ff;
+    }
+    25% {
+        stroke: #ff00ff;
+    }
+
+    50% {
+        stroke: #800080;
+    }
+
+    75% {
+        stroke: #702963;
+    }
+
+    100% {
+        stroke: #9b30ff;
+    }
+}
+
+#navGem {
+    animation: gemAnimation 2s infinite alternate;
+}
+
+.carousel-pic{
+    max-height: 150px;
+    object-fit: cover;
+}
