@@ -38,6 +38,6 @@ textarea {
 }
 
 .carousel-pic{
-    max-height: 150px;
+    max-height: 300px;
     object-fit: cover;
 }
