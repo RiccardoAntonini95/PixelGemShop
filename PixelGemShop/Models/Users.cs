@@ -43,6 +43,12 @@ namespace PixelGemShop.Models
         [StringLength(20)]
         public string LastName { get; set; }
 
+        [StringLength(20)]
+        public string Phone {  get; set; }
+
+        [StringLength(250)]
+        public string Address { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carts> Carts { get; set; }
 

@@ -27,7 +27,7 @@ namespace PixelGemShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "Username, Password, Email, Role, FirstName, LastName")] Users newUser)
+        public ActionResult SignUp([Bind(Include = "Username, Password, Email, Role, FirstName, LastName, Phone, Address")] Users newUser)
         {
             using (var db = new DBContext())
             {
