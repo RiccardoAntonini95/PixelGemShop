@@ -16,6 +16,7 @@ textarea {
     0% {
         stroke: #9966ff;
     }
+
     25% {
         stroke: #ff00ff;
     }
@@ -37,7 +38,38 @@ textarea {
     animation: gemAnimation 2s infinite alternate;
 }
 
-.carousel-pic{
+#hero {
+    height: 70vh;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(193 11 184 / 56%);
+    z-index: -1;
+}
+
+#youtube {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    transform: scale(2);
+    object-fit: cover;
+}
+
+#heroText {
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    padding: 3em;
+    color: gold;
+}
+
+.carousel-pic {
     max-height: 300px;
     object-fit: cover;
 }
