@@ -17,12 +17,6 @@ namespace PixelGemShop.Models
 
         public int Quantity { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string ProductName { get; set; }
-
-        public string ProductImage { get; set; }
-
         public virtual Carts Carts { get; set; }
 
         public virtual Products Products { get; set; }

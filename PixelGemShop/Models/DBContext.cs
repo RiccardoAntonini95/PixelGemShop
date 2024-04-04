@@ -47,10 +47,6 @@ namespace PixelGemShop.Models
                 .HasPrecision(10, 2);
 
             modelBuilder.Entity<Products>()
-                .Property(e => e.RatingAvg)
-                .HasPrecision(2, 1);
-
-            modelBuilder.Entity<Products>()
                 .HasMany(e => e.CartItems)
                 .WithRequired(e => e.Products)
                 .WillCascadeOnDelete(false);
