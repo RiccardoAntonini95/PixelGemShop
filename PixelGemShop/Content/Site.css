@@ -11,6 +11,7 @@ select,
 textarea {
     max-width: 280px;
 }
+/*NAVBAR*/
 
 @keyframes gemAnimation {
     0% {
@@ -38,6 +39,7 @@ textarea {
     animation: gemAnimation 2s infinite alternate;
 }
 
+/*HERO SECTION*/
 #hero {
     height: 70vh;
     overflow: hidden;
@@ -69,6 +71,41 @@ textarea {
     color: gold;
 }
 
+/*EDITOR'S CHOICE SECTION*/
+.editors-choice {
+    background-image: url("./Images/editorschoice.jpg");
+    background-size: cover;
+}
+
+/*SAVINGS SECTION*/
+.savings {
+    background-image: url("./Images/savings.jpg");
+    background-size: cover;
+}
+
+/*CATEGORIES SECTION*/
+.category-container{
+    padding: 2rem 2rem;
+    background-size: cover;
+}
+.videogames {
+    background-image: url("./Images/videogames.jpg");
+}
+
+.console {
+    background-image: url("./Images/console.jpg");
+}
+
+.accessories {
+    background-image: url("./Images/accessories.jpg");
+}
+
+.category-link{
+    color: white;
+    font-weight: bold;
+}
+
+/*CAROUSEL*/
 .carousel-pic {
     max-height: 300px;
     object-fit: cover;
