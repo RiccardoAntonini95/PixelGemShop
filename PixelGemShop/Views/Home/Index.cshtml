@@ -5,7 +5,7 @@
 
     @*HERO*@
     <div id="hero" class="text-center position-relative d-flex justify-content-center align-items-center">
-        <iframe src="https://www.youtube.com/embed/u7kdVe8q5zs?autoplay=1&mute=1&controls=0&fullscreen=1&start=15" id="youtube" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <video src="@Url.Content("~/Uploads/gem-video.mp4")" id="youtube" autoplay muted loop></video>
         <h1 id="heroText">"Unearth Gaming Gems at Pixel Gem Shop: Where Every Purchase is Sparkling Treasure!"</h1>
     </div>
 
@@ -18,14 +18,14 @@
                 {
                     var product = ViewBag.editorsChoice[i];
                     <div class="card col mt-2">
-                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" />
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" alt="product-image"/>
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p>voti stelle qua</p>
                             <p class="card-text">@product.Price&euro;</p>
                             @if (product.Stock < 10 && product.Stock > 0)
                             {
-                                <p class="text-warning">Few copies left</p>
+                                <p class="text-warning">Only @product.Stock available!</p>
                             }
                             @if (product.Stock == 0)
                             {
@@ -73,7 +73,7 @@
                             </p>
                             @if (product.Stock < 10 && product.Stock > 0)
                             {
-                                <p class="text-warning">Few copies left</p>
+                                <p class="text-warning">Only @product.Stock available!</p>
                             }
                             @if (product.Stock == 0)
                             {
@@ -103,8 +103,8 @@
 
     @*SHOP BY CATEGORIES*@
     <section>
-        <h2>Shop by categories</h2>
-        <div class="text-center">
+        <div class="shop-by-categories text-center">
+            <h2>Shop by categories</h2>
             <div class="row gap-2">
                 <div class="category-container videogames col">
                     <a href="#" class="category-link">Videogames</a>
