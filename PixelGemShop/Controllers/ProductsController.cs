@@ -156,6 +156,7 @@ namespace PixelGemShop.Controllers
                         return View(products);
                     }
                 }
+                //se non metti nessuna foto sparisce quella che avevi BUG
 
                 db.Entry(products).State = EntityState.Modified;
                 db.SaveChanges();

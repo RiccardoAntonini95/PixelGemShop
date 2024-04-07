@@ -13,14 +13,90 @@
     <section>
         <div class="text-center editors-choice">
             <h2>Editor's Choice</h2>
+            <div class="row row-cols-2 row-cols-md-4 g-2 m-0">
+                @for (int i = 0; i < 4; i++)
+                {
+                    var product = ViewBag.editorsChoice[i];
+                    <div class="card col mt-2">
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" />
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p>voti stelle qua</p>
+                            <p class="card-text">@product.Price&euro;</p>
+                            @if (product.Stock < 10 && product.Stock > 0)
+                            {
+                                <p class="text-warning">Few copies left</p>
+                            }
+                            @if (product.Stock == 0)
+                            {
+                                <p class="text-danger">Product out of stock</p>
+                            }
+                            @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
+                        </div>
+                        <div class="card-footer">
+                            @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
+                            @using (Html.BeginForm())
+                            {
+                                <label for="quantity-@i">Quantity: </label>
+                                <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
+                                <button class="btn btn-outline-secondary" type="submit">Add to cart</button>
+                                if (User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn btn-warning" })
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </section>
 
 
     @*OFFERTE*@
     <section>
-        <div class="savings">
+        <div class="savings text-center">
             <h2>Savings Zone</h2>
+            <div class="row gx-2 m-0">
+                @for (int i = 0; i < Math.Min(ViewBag.savings.Count, 6); i++)   //cicla il numero minimo di prodotti tra viewbag e 6
+                {
+                    var product = ViewBag.savings[i];
+                    <div class="col-4 col-md-2 card">
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" />
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">
+                                <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
+                                <br>
+                                <span class="text-success fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
+                                @*Questo valore serve nel carrello*@
+                            </p>
+                            @if (product.Stock < 10 && product.Stock > 0)
+                            {
+                                <p class="text-warning">Few copies left</p>
+                            }
+                            @if (product.Stock == 0)
+                            {
+                                <p class="text-danger">Product out of stock</p>
+                            }
+                            @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
+                        </div>
+                        <div class="card-footer">
+                            @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
+                            @using (Html.BeginForm())
+                            {
+                                <label for="quantity-@i">Quantity: </label>
+                                <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
+                                <button class="btn btn-outline-secondary" type="submit">Add to cart</button>
+                                if (User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn btn-warning" })
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </section>
 
@@ -28,7 +104,7 @@
     @*SHOP BY CATEGORIES*@
     <section>
         <h2>Shop by categories</h2>
-        <div class="container text-center">
+        <div class="text-center">
             <div class="row gap-2">
                 <div class="category-container videogames col">
                     <a href="#" class="category-link">Videogames</a>

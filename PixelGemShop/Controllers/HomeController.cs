@@ -13,8 +13,12 @@ namespace PixelGemShop.Controllers
         DBContext db = new DBContext();
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Categories).FirstOrDefault(); //seleziona 3 banner per le categorie
-            return View(products);
+            var products = db.Products.ToList();
+            var editorsChoiceProduct = products.OrderByDescending(p => p.Stock).ToList(); //ordinati per maggior stock
+            var savingsProduct = products.Where(p => p.DiscountPercentage != null).ToList(); //selezionati solo quelli in sconto
+            ViewBag.editorsChoice = editorsChoiceProduct;
+            ViewBag.savings = savingsProduct;
+            return View();
         }
 
         [Authorize(Roles = "User")]
