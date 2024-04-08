@@ -1,9 +1,7 @@
 ﻿@model PixelGemShop.Models.Products
 
 <main>
-    <div class="loader-container">
-        <div class="loader"></div>
-    </div>
+
     @*TAG SEMANTICI HEADER, SECTION, ASIDE ECC.*@
 
     @*HERO*@
@@ -173,11 +171,3 @@
     </section>
 </main>
 
-@section scripts{
-    <script>
-        const containerLoader = document.querySelector(".loader-container");
-        window.addEventListener("load", () => {
-            containerLoader.classList.add("hidden")
-        })
-    </script>
-}
