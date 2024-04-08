@@ -1,6 +1,9 @@
 ﻿@model PixelGemShop.Models.Products
 
 <main>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
     @*TAG SEMANTICI HEADER, SECTION, ASIDE ECC.*@
 
     @*HERO*@
@@ -120,7 +123,7 @@
             <h2>Shop by categories</h2>
             <div class="row gap-2">
                 <div class="category-container videogames col">
-                      @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link" })
+                    @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link" })
                 </div>
                 <div class="category-container console col">
                     @Html.ActionLink("Console", "Index", "Console", new { area = "" }, new { @class = "category-link" })
@@ -168,5 +171,13 @@
             </button>
         </div>
     </section>
-
 </main>
+
+@section scripts{
+    <script>
+        const containerLoader = document.querySelector(".loader-container");
+        window.addEventListener("load", () => {
+            containerLoader.classList.add("hidden")
+        })
+    </script>
+}
