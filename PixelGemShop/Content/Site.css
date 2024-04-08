@@ -4,6 +4,10 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+section{
+    margin-top: 2em;
+}
 /*NAVBAR*/
 @keyframes gemAnimation {
     0% {
@@ -32,8 +36,24 @@
 }
 
 /*CARDS*/
+.card {
+    --bs-card-bg: #ffffffb0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card:hover{
+    box-shadow: 3px 5px 49px black;
+}
+
 .card-img-top{
     height: 100px;
+    object-fit: cover;
+}
+
+.card-img-top:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
 }
 
 /*HERO SECTION*/

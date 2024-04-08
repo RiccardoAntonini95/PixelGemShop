@@ -10,7 +10,7 @@ namespace PixelGemShop.Controllers
 {
     public class HomeController : Controller
     {
-        DBContext db = new DBContext();
+        private DBContext db = new DBContext();
         public ActionResult Index()
         {
             var products = db.Products.ToList();

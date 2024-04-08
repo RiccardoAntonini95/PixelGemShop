@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Videogames</h2>
+<div class="videogames">
+    <div class="row gx-2 m-0">
+        @foreach (var product in Model)
+        {
+            <div class="card col-6 col-md-3">
+                <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p>voti stelle qua</p>
+                    @if (product.DiscountPercentage == null)
+                    {
+                        <p class="card-text">@product.Price&euro;</p>
+                    }
+                    else
+                    {
+                        <p>
+                            <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
+                            <br>
+                            <span class="text-success fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
+
+                        </p>
+                    }
+                    @if (product.Stock < 10 && product.Stock > 0)
+                    {
+                        <p class="text-warning">Only @product.Stock available!</p>
+                    }
+                    @if (product.Stock == 0)
+                    {
+                        <p class="text-danger">Product out of stock</p>
+                    }
+                    @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
+                </div>
+                <div class="card-footer">
+                    @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
+                    @using (Html.BeginForm())
+                    {
+                        <label for="quantity">Quantity: </label>
+                        <input type="number" class="form-control" id="quantity" min="1" name="quantity">
+                        <button class="btn btn-outline-secondary" type="submit">Add to cart</button>
+                        if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn btn-warning" })
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

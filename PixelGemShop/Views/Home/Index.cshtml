@@ -10,19 +10,31 @@
     </div>
 
     @*IN PRIMO PIANO*@
-    <section>
-        <div class="text-center editors-choice">
-            <h2>Editor's Choice</h2>
-            <div class="row row-cols-2 row-cols-md-4 g-2 m-0">
+    <section class="text-center">
+        <h2>Editor's Choice</h2>
+        <div class="editors-choice">
+            <div class="row gx-2 m-0">
                 @for (int i = 0; i < 4; i++)
                 {
                     var product = ViewBag.editorsChoice[i];
-                    <div class="card col mt-2">
-                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" alt="product-image"/>
+                    <div class="card col-6 col-md-3">
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p>voti stelle qua</p>
-                            <p class="card-text">@product.Price&euro;</p>
+                            @if (product.DiscountPercentage == null)
+                            {
+                                <p class="card-text">@product.Price&euro;</p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
+                                    <br>
+                                    <span class="text-success fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
+
+                                </p>
+                            }
                             @if (product.Stock < 10 && product.Stock > 0)
                             {
                                 <p class="text-warning">Only @product.Stock available!</p>
@@ -54,15 +66,16 @@
 
 
     @*OFFERTE*@
-    <section>
-        <div class="savings text-center">
-            <h2>Savings Zone</h2>
-            <div class="row gx-2 m-0">
+    <section class="text-center">
+        @*TODO: Link Vedi Altro*@
+        <h2>Savings Zone</h2>
+        <div class="savings">
+            <div class="row m-0">
                 @for (int i = 0; i < Math.Min(ViewBag.savings.Count, 6); i++)   //cicla il numero minimo di prodotti tra viewbag e 6
                 {
                     var product = ViewBag.savings[i];
                     <div class="col-4 col-md-2 card">
-                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top object-fit-contain" />
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text">
@@ -107,50 +120,53 @@
             <h2>Shop by categories</h2>
             <div class="row gap-2">
                 <div class="category-container videogames col">
-                    <a href="#" class="category-link">Videogames</a>
+                      @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link" })
                 </div>
                 <div class="category-container console col">
-                    <a href="#" class="category-link">Console</a>
+                    @Html.ActionLink("Console", "Index", "Console", new { area = "" }, new { @class = "category-link" })
                 </div>
                 <div class="category-container accessories col">
-                    <a href="#" class="category-link">Accessories</a>
+                    @Html.ActionLink("Accessories", "Index", "Accessories", new { area = "" }, new { @class = "category-link" })
                 </div>
             </div>
         </div>
     </section>
 
 
-    @*Carousel*@
-    <div id="carouselContainer" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <figure>
-                    <img src="@Url.Content("~/Content/Images/carousel1.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage1">
-                </figure>
+    @*CAROUSEL*@
+    <section>
+        <div id="carouselContainer" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <figure>
+                        <img src="@Url.Content("~/Content/Images/carousel1.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage1">
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <img src="@Url.Content("~/Content/Images/carousel2.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage2">
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <img src="@Url.Content("~/Content/Images/carousel3.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage3">
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <img src="@Url.Content("~/Content/Images/carousel4.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage4">
+                    </figure>
+                </div>
             </div>
-            <div class="carousel-item">
-                <figure>
-                    <img src="@Url.Content("~/Content/Images/carousel2.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage2">
-                </figure>
-            </div>
-            <div class="carousel-item">
-                <figure>
-                    <img src="@Url.Content("~/Content/Images/carousel3.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage3">
-                </figure>
-            </div>
-            <div class="carousel-item">
-                <figure>
-                    <img src="@Url.Content("~/Content/Images/carousel4.jpg")" class="carousel-pic d-block w-100" alt="CarouselImage4">
-                </figure>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselContainer" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselContainer" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselContainer" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselContainer" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    </section>
+
 </main>

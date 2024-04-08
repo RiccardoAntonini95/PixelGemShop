@@ -119,7 +119,7 @@ namespace PixelGemShop.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage")] Products products, HttpPostedFileBase Image)
         {
             //if (ModelState.IsValid)
             //{
@@ -156,7 +156,7 @@ namespace PixelGemShop.Controllers
                         return View(products);
                     }
                 }
-                //se non metti nessuna foto sparisce quella che avevi BUG
+                //BUG: se non metti nessuna foto sparisce quella che avevi
 
                 db.Entry(products).State = EntityState.Modified;
                 db.SaveChanges();
