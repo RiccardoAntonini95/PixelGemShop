@@ -64,7 +64,8 @@
                             <li class="text-white">
                                 Welcome @Session["Username"] @*all'interno dell'if non appare se non sei loggato quindi non serve svuotare la session*@
                             </li>
-                            @*TODO: Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
+                            @*TODO:Bug da fixare, se apro l'app e sono loggato la session non esiste quindi non leggo il nome
+                                Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
                         }
                         <li>
                             <form action="@Url.Action("Logout", "Login")" method="post">

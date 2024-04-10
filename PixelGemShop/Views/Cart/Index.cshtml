@@ -33,14 +33,15 @@
                 @if (product.Products.DiscountPercentage == null)
                 {
                     <td>@product.Products.Price &euro;</td>
-                    total += product.Products.Price * 2;
+                    total += product.Products.Price * product.Quantity;
                 }
                 else
                 {
                     <td>@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</td>
-                    total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * 2);
+                    total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * product.Quantity);
                 }
                 @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { id = $"removeFromCartForm_{product.IdProduct}" })) { 
+                    @Html.AntiForgeryToken()
                     <td>
                         <input type="hidden" value="@product.IdProduct" name="idProduct" />
                         <button class="btn btn-danger" type="submit">Remove From Cart</button>
@@ -49,9 +50,18 @@
             </tr>
         }
     </tbody>
-    <tfoot>
-        @total &euro; @*TODO: fixare, sta in cima alla pagina*@
-    </tfoot>
-    @*Aggiungere possibilità di togliere elementi dal carrello o modificare quantità*@
+    @*TODO: Aggiungere possibilità di modificare quantità (bottoni + e - item.quantity++ e item-quantity--)*@
 </table>
+<p class="text-success fw-bold">@total &euro;</p> 
+<div>
+    @using (Html.BeginForm())
+    {
+    @*Questo bottone deve: 
+    1- Generare l'ordine nella tabella orders
+    2- Generare i dettagli dell'ordine per ogni oggetto nella tabella orderDetails per poter recuperare poi lo storico
+    3- Ridurre la quantità del prodotto nella tabella prodotti allo stock
+    4- Svuotare questo carrello*@
+    <button class="btn btn-info" type="submit">Buy Now</button>
+    }
+</div>
 

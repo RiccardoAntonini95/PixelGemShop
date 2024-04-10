@@ -13,7 +13,7 @@ namespace PixelGemShop.Controllers
         private DBContext db = new DBContext();
         // GET: Cart
         public ActionResult Index()
-        {
+        { //TODO: Alternativa se carrello vuoto o se nessuno è loggato
             int currentUser = int.Parse(User.Identity.Name);
             int currentIdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var products = db.CartItems.Include(p => p.Products).Where(p => p.IdCart == currentIdCart);
@@ -59,6 +59,7 @@ namespace PixelGemShop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RemoveFromCart([Bind(Include = "idProduct")] int idProduct)
         {
             var productToRemove = db.CartItems.Where(p => p.IdProduct == idProduct).FirstOrDefault();
