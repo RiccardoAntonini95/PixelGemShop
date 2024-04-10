@@ -94,6 +94,19 @@ section{
     animation: gemAnimation 2s infinite alternate;
 }
 
+.cart-counter {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    top: -3px;
+    left: 14px;
+    border-radius: 50%;
+    display: flex; /*none di default e flex quando c'è qualcosa nel carrello usare classi d-none e d-flex*/
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+}
+
 /*CARDS*/
 .card {
     --bs-card-bg: #ffffffb0;
