@@ -57,6 +57,7 @@
                             {
                                 @Html.AntiForgeryToken();
                                 <input type="hidden" name="IdProduct" value="@product.IdProduct" />
+                                <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn btn-outline-secondary" type="submit">Add to cart</button>
@@ -108,6 +109,7 @@
                             {
                                 @Html.AntiForgeryToken();
                                 <input type="hidden" name="IdProduct" value="@product.IdProduct" />
+                                <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn btn-outline-secondary" type="submit">Add to cart</button>

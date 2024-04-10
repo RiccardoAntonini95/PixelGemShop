@@ -23,9 +23,9 @@ namespace PixelGemShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //idproduct idcart quantity
-        public ActionResult AddToCart([Bind(Include = "idProduct, quantity")] int idProduct, int quantity)
+        public ActionResult AddToCart([Bind(Include = "idProduct, quantity")] int idProduct, int quantity, string returnUrl)
         {
-            int currentUser = int.Parse(User.Identity.Name);
+            int currentUser = int.Parse(User.Identity.Name); //TODO: se non sei loggato redirect al login
             CartItems product = new CartItems
             {
                 IdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart,
@@ -37,7 +37,7 @@ namespace PixelGemShop.Controllers
 
             TempData["Message"] = "Added to cart";
 
-            return View(); //TODO: Tornare su pagine diverse quando si effettua l'aggiunta al carrello
+            return Redirect(returnUrl); //TODO: Tornare su pagine diverse quando si effettua l'aggiunta al carrello
         }
     }
 }
