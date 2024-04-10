@@ -47,6 +47,7 @@
                     @if (User.IsInRole("User"))//LINK SOLO PER GLI USER
                     {
                         @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        <li>@Html.ActionLink("Cart", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                 </ul>
                 @if (authCookie == null)

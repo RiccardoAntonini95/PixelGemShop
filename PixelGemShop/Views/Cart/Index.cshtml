@@ -6,6 +6,13 @@
 
 <h2>Recap Cart</h2>
 
+@if (TempData["Success"] != null)  //Feedback positivo riuscita operazione
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -13,6 +20,7 @@
             <th>Image</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +39,12 @@
                 {
                     <td>@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</td>
                     total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * 2);
+                }
+                @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { id = $"removeFromCartForm_{product.IdProduct}" })) { 
+                    <td>
+                        <input type="hidden" value="@product.IdProduct" name="idProduct" />
+                        <button class="btn btn-danger" type="submit">Remove From Cart</button>
+                    </td>
                 }
             </tr>
         }

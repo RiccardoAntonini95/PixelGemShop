@@ -18,26 +18,58 @@ namespace PixelGemShop.Controllers
             int currentIdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var products = db.CartItems.Include(p => p.Products).Where(p => p.IdCart == currentIdCart);
             return View(products.ToList());
-            //renderizza tutti i cart items che hanno come id cart quello attuale
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] //idproduct idcart quantity
+        [ValidateAntiForgeryToken]
         public ActionResult AddToCart([Bind(Include = "idProduct, quantity")] int idProduct, int quantity, string returnUrl)
         {
-            int currentUser = int.Parse(User.Identity.Name); //TODO: se non sei loggato redirect al login
-            CartItems product = new CartItems
+            if (!User.Identity.IsAuthenticated)
             {
-                IdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart,
-                IdProduct = idProduct,
-                Quantity = quantity
-            };
-            db.CartItems.Add(product);
+                TempData["Fail"] = "To add this product to your cart you must log in";
+                return RedirectToAction("Index", "Login");
+
+            }
+            int currentUser = int.Parse(User.Identity.Name);
+            int currentCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
+            var existingCartItem = db.CartItems.FirstOrDefault(c => c.IdProduct == idProduct && c.IdCart == currentCart);
+
+            if (existingCartItem != null)
+            {
+                existingCartItem.Quantity += quantity; //se esiste aumenti la quantità del numero in ingresso
+            }
+
+            else
+            {
+                CartItems product = new CartItems
+                {
+                    IdCart = currentCart,
+                    IdProduct = idProduct,
+                    Quantity = quantity
+                };
+                db.CartItems.Add(product);
+
+            }
+
             db.SaveChanges();
 
             TempData["Message"] = "Added to cart";
 
-            return Redirect(returnUrl); //TODO: Tornare su pagine diverse quando si effettua l'aggiunta al carrello
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveFromCart([Bind(Include = "idProduct")] int idProduct)
+        {
+            var productToRemove = db.CartItems.Where(p => p.IdProduct == idProduct).FirstOrDefault();
+            if (productToRemove != null)
+            {
+                db.CartItems.Remove(productToRemove);
+                db.SaveChanges();
+                TempData["Success"] = "Product removed from cart";
+                return RedirectToAction("Index", "Cart");
+            }
+            return RedirectToAction("Index", "Cart");
         }
     }
 }
