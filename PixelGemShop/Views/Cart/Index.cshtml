@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    decimal total = 0;
+}
+
+<h2>Recap Cart</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Products.Name</td>
+                <td><img src="@Url.Content("~/Uploads/" + product.Products.Image)" alt="product-image" /></td>
+                <td>@product.Quantity</td>
+                @if (product.Products.DiscountPercentage == null)
+                {
+                    <td>@product.Products.Price &euro;</td>
+                    total += product.Products.Price * 2;
+                }
+                else
+                {
+                    <td>@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</td>
+                    total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * 2);
+                }
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        @total &euro; @*TODO: fixare, sta in cima alla pagina*@
+    </tfoot>
+    @*Aggiungere possibilità di togliere elementi dal carrello o modificare quantità*@
+</table>
+

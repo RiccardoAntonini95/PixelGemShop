@@ -164,6 +164,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccessoriesController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ConsoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\Console\Index.cshtml" />
     <Content Include="Views\Videogames\Index.cshtml" />
     <Content Include="Views\Accessories\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

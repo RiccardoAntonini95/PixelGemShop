@@ -1,6 +1,12 @@
 ﻿@model PixelGemShop.Models.Products
 
 <main>
+    @if (TempData["Message"] != null)  //Feedback positivo riuscita operazione
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
 
     @*TAG SEMANTICI HEADER, SECTION, ASIDE ECC.*@
 
@@ -47,9 +53,10 @@
                             @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
                         </div>
                         <div class="card-footer">
-                            @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm("AddToCart", "Cart"))
                             {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" name="IdProduct" value="@product.IdProduct" />
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn btn-outline-secondary" type="submit">Add to cart</button>
@@ -97,8 +104,10 @@
                         </div>
                         <div class="card-footer">
                             @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm("AddToCart", "Cart"))
                             {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" name="IdProduct" value="@product.IdProduct" />
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn btn-outline-secondary" type="submit">Add to cart</button>

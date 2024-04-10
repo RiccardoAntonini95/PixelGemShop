@@ -36,6 +36,9 @@ namespace PixelGemShop.Controllers
                     try
                     { //TODO: nuovo user che si registra genera un suo carrello nel database 
                         db.Users.Add(newUser);
+                        Carts cart = new Carts();
+                        cart.IdUser = newUser.IdUser;
+                        db.Carts.Add(cart);
                         db.SaveChanges();
                     }
                     catch (Exception ex)
