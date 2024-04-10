@@ -36,7 +36,7 @@ namespace PixelGemShop.Controllers
 
             if (existingCartItem != null)
             {
-                existingCartItem.Quantity += quantity; //se esiste aumenti la quantità del numero in ingresso
+                existingCartItem.Quantity += quantity; //se esiste aumenti la quantità usando il numero in ingresso
             }
 
             else
