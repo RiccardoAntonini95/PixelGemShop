@@ -170,6 +170,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VideogamesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -288,6 +289,8 @@
     <Content Include="Views\Videogames\Index.cshtml" />
     <Content Include="Views\Accessories\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\User\OrderHistory.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

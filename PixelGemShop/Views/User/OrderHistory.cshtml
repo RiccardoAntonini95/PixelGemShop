@@ -1,0 +1,19 @@
+﻿@using PixelGemShop.Models
+@{
+    ViewBag.Title = "OrderHistory";
+}
+
+<h2>Order History</h2>
+
+@foreach (var order in Model)
+{
+    <div class="border border-black">
+        @foreach (var orderDetail in order.OrderDetails)
+        {
+            <p>@orderDetail.Quantity x @orderDetail.ProductName</p>
+            <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="" width="30" height="30" alt="product-image" />
+        }
+        <p>@order.DateOrder</p>
+    </div>
+}
+

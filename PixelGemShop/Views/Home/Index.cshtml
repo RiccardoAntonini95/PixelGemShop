@@ -49,6 +49,7 @@
                             @if (product.Stock == 0)
                             {
                                 <p class="text-danger">Product out of stock</p>
+                                //TODO: Non deve essere acquistabile se out of stock
                             }
                             @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
                         </div>
