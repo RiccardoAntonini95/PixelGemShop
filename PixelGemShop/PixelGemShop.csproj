@@ -168,6 +168,7 @@
     <Compile Include="Controllers\ConsoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VideogamesController.cs" />
@@ -291,6 +292,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Views\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

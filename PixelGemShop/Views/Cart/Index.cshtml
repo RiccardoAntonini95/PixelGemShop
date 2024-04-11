@@ -12,6 +12,12 @@
         @TempData["Success"]
     </div>
 }
+@if (TempData["Selled"] != null)  //Feedback positivo vendita
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Selled"]
+    </div>
+}
 
 <table class="table">
     <thead>
@@ -40,7 +46,8 @@
                     <td>@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</td>
                     total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * product.Quantity);
                 }
-                @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { id = $"removeFromCartForm_{product.IdProduct}" })) { 
+                @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { id = $"removeFromCartForm_{product.IdProduct}" }))
+                {
                     @Html.AntiForgeryToken()
                     <td>
                         <input type="hidden" value="@product.IdProduct" name="idProduct" />
@@ -52,16 +59,12 @@
     </tbody>
     @*TODO: Aggiungere possibilità di modificare quantità (bottoni + e - item.quantity++ e item-quantity--)*@
 </table>
-<p class="text-success fw-bold">@total &euro;</p> 
+<p class="text-success fw-bold">@total &euro;</p>
 <div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("OrderNow", "Orders"))
     {
-    @*Questo bottone deve: 
-    1- Generare l'ordine nella tabella orders
-    2- Generare i dettagli dell'ordine per ogni oggetto nella tabella orderDetails per poter recuperare poi lo storico
-    3- Ridurre la quantità del prodotto nella tabella prodotti allo stock
-    4- Svuotare questo carrello*@
-    <button class="btn btn-info" type="submit">Buy Now</button>
+        @Html.AntiForgeryToken();
+        <button class="btn btn-info" type="submit">Buy Now</button>
     }
 </div>
 
