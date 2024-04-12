@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Security.Cryptography;
 
 namespace PixelGemShop.Controllers
 {
@@ -13,7 +14,7 @@ namespace PixelGemShop.Controllers
         private DBContext db = new DBContext();
         // GET: Cart
         public ActionResult Index()
-        { //TODO: Alternativa se carrello vuoto o se nessuno è loggato
+        { //TODO: Alternativa se nessuno è loggato
             int currentUser = int.Parse(User.Identity.Name);
             int currentIdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var products = db.CartItems.Include(p => p.Products).Where(p => p.IdCart == currentIdCart);
@@ -56,6 +57,34 @@ namespace PixelGemShop.Controllers
             TempData["Message"] = "Added to cart";
 
             return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateQuantity([Bind(Include = "idProduct")] int idProductMod, string increment, string decrement)
+        {
+            var productToModify = db.CartItems.Where(p => p.IdProduct == idProductMod).FirstOrDefault();
+            if (productToModify != null)
+            {
+                if(increment != null)
+                {
+                    productToModify.Quantity++;
+                    db.Entry(productToModify).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if(decrement != null)
+                {
+                    productToModify.Quantity--;
+                    db.Entry(productToModify).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                if (productToModify.Quantity == 0)
+                {
+                    db.CartItems.Remove(productToModify);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Cart");
         }
 
         [HttpPost]
