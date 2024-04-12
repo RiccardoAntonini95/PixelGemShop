@@ -28,7 +28,7 @@
                         <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
-                            <p>voti stelle qua</p>
+                            <p>Avg rating: @product.AverageRating</p>
                             @if (product.DiscountPercentage == null)
                             {
                                 <p class="card-text">@product.Price&euro;</p>
@@ -88,6 +88,7 @@
                         <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
+                            <p>Avg rating: @product.AverageRating</p>
                             <p class="card-text">
                                 <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
                                 <br>

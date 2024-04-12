@@ -35,6 +35,8 @@ namespace PixelGemShop.Models
         public decimal Price { get; set; }
 
         public int? DiscountPercentage { get; set; }
+        public decimal? AverageRating { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartItems> CartItems { get; set; }

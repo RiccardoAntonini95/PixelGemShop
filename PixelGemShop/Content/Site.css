@@ -128,6 +128,18 @@ section{
     transition: transform 0.3s ease;
 }
 
+/*STARS*/
+
+.star {
+    fill: grey;
+    transition: fill 0.2s;
+    cursor: pointer;
+}
+
+.star:hover, .star.active {
+    fill: gold;
+}
+
 /*HERO SECTION*/
 #hero {
     height: 50vh;
