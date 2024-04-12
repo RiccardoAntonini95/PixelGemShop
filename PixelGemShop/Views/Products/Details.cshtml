@@ -73,3 +73,14 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<h4>Reviews</h4>
+<div>
+    @foreach (var review in ViewBag.Reviews)
+    {
+        <div class="border border-black">
+            <p>recensione: @review.Description</p>
+            <p>Voto: @review.Rate</p>
+            <p>Scritto da @review.Users.Username</p>
+        </div>
+    }
+</div>

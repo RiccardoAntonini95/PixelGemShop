@@ -1,0 +1,42 @@
+﻿@model PixelGemShop.Models.Reviews
+@{
+    ViewBag.Title = "AddReview";
+}
+
+<h2>Add Review</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    <input type="hidden" name="IdUser" value="@User.Identity.Name" />
+    <input type="hidden" name="IdProduct" value="@ViewBag.ProductId" />
+    <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label for="star5">5</label>
+        <input type="radio" id="star4" name="rating" value="4" /><label for="star4">4</label>
+        <input type="radio" id="star3" name="rating" value="3" /><label for="star3">3</label>
+        <input type="radio" id="star2" name="rating" value="2" /><label for="star2">2</label>
+        <input type="radio" id="star1" name="rating" value="1" /><label for="star1">1</label>
+    </div>
+    <input type="hidden" id="Rate" name="Rate" value="" />
+    @Html.EditorFor(model => model.Description)
+    <button type="submit" class="btn btn-info">Submit</button>
+}
+
+@*TODO: Stelle con hover invece che input radio*@
+
+@section scripts {
+    <script>
+        const ratings = document.querySelectorAll('.rating input');
+        const ratingValueField = document.getElementById('Rate');
+
+        let selectedRating;
+
+        ratings.forEach((rating) => {
+            rating.addEventListener('click', function () {
+                selectedRating = this.value;
+                ratingValueField.value = selectedRating; // Aggiorna il campo nascosto con il valore del voto selezionato
+            });
+        });
+    </script>
+
+}

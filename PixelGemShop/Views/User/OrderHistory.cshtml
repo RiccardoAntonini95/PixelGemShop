@@ -12,6 +12,10 @@
         {
             <p>@orderDetail.Quantity x @orderDetail.ProductName</p>
             <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="" width="30" height="30" alt="product-image" />
+            if (orderDetail.IdProduct != null)
+            {
+                @Html.ActionLink("Write a Review", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, null)
+            }
         }
         <p>@order.DateOrder</p>
     </div>

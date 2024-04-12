@@ -29,11 +29,13 @@ namespace PixelGemShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var reviews = db.Reviews.Include(r => r.Users).Where(r => r.IdProduct == id).ToList();
             Products products = db.Products.Find(id);
             if (products == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Reviews = reviews;
             return View(products);
         }
 
