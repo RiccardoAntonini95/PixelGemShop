@@ -46,24 +46,6 @@ namespace PixelGemShop.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage,RatingAvg")] Products products)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Products.Add(products);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
-        //    return View(products);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Products products, HttpPostedFileBase Image)
@@ -123,14 +105,6 @@ namespace PixelGemShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage")] Products products, HttpPostedFileBase Image)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(products).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory", products.IdCategory);
-            //return View(products);
 
             if (products == null)
             {

@@ -1,10 +1,12 @@
-﻿using PixelGemShop.Models;
+﻿using Microsoft.Ajax.Utilities;
+using PixelGemShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace PixelGemShop.Controllers
 {
@@ -15,8 +17,36 @@ namespace PixelGemShop.Controllers
         public ActionResult Index()
         {
             var currentUser = int.Parse(User.Identity.Name);
-            var user = db.Users.Where(u => u.IdUser == currentUser).FirstOrDefault();
+            var user = db.Users.Find(currentUser);
             return View(user);
+        }
+
+        public ActionResult Edit()
+        {
+            var currentUser = int.Parse(User.Identity.Name);
+            var user = db.Users.Find(currentUser);
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IdUser, Username, Password, Email, Role, FirstName, LastName, Phone, Address")] Users user)
+        {
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete()
+        {
+            var currentUser = int.Parse(User.Identity.Name);
+            var user = db.Users.Find(currentUser);
+            var userCart = db.Carts.Where(u => u.IdUser == currentUser).FirstOrDefault();
+            db.Carts.Remove(userCart);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult OrderHistory()
