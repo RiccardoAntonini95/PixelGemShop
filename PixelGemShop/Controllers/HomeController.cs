@@ -32,11 +32,5 @@ namespace PixelGemShop.Controllers
             ViewBag.savings = savingsProduct;
             return View();
         }
-
-        [Authorize(Roles = "User")]
-        public ActionResult ProvaUser()
-        {
-            return View();
-        }
     }
 }

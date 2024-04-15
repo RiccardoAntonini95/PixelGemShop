@@ -29,7 +29,7 @@
 }
 else
 {
-    <h2>You're logged in as User number @User.Identity.Name </h2> //TODO: interfaccia per fare il logout visto che sei loggato
+    <h2>You're logged in as User number @User.Identity.Name </h2> 
     <p>Logout: </p>
     <form action="@Url.Action("Logout", "Login")" method="post">
         @Html.AntiForgeryToken()

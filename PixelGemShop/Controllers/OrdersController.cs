@@ -51,7 +51,6 @@ namespace PixelGemShop.Controllers
                 db.OrderDetails.Add(productDetail);
                 db.SaveChanges();
                 //3 - Ridurre la quantità del prodotto nella tabella prodotti allo stock
-                //var productSelled = db.Products.FirstOrDefault(c => c.IdProduct == product.IdProduct);
                 var productSelled = db.Products.Find(product.IdProduct);
                 if(productSelled != null)
                 {

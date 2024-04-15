@@ -51,7 +51,6 @@
 
                     @if (User.IsInRole("Admin"))//LINK SOLO PER GLI ADMIN
                     {
-                        // TODO: Dropdown link con le crud dei prodotti
                         @*<li>@Html.ActionLink("", "", "", new { area = "" }, new { @class = "nav-link" })</li>*@
                         <li>@Html.ActionLink("Manage Products", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
                     }
@@ -73,7 +72,6 @@
                         @if (firstNameUser != "")
                         {
                             <li class="text-white">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline">@firstNameUser</a></li>
-                            @*TODO: Link al profilo di questo user sul nome alla Amazon + hover che evidenza il link*@
                         }
                     <li>
                         <div class="position-relative">
