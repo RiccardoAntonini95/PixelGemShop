@@ -48,7 +48,7 @@
             }
             else
             {
-                <p>You haven't entered your phone number yet, <a href="#">do you want to do it now?</a></p>
+                <p>You haven't entered your phone number yet, <a href="@Url.Action("Edit", "User")">do you want to do it now?</a></p>
             }
         </div>
     </li>
@@ -56,6 +56,12 @@
         <div>
             <h5>Order History</h5>
             <a href="@Url.Action("OrderHistory", "User")">See it Now!</a>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div>
+            <h5>All my reviews</h5>
+            <a href="@Url.Action("Index", "Reviews", new {id = Model.IdUser})">See it Now!</a>
         </div>
     </li>
 </ul>

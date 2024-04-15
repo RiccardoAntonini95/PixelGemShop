@@ -295,6 +295,7 @@
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Reviews\AddReview.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Reviews\EditReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

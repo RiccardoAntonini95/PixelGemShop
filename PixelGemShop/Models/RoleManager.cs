@@ -37,9 +37,9 @@ namespace PixelGemShop.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string idUser)//arriva l'id come stringa
+        public override string[] GetRolesForUser(string idUser)
         {
-            var userId = Convert.ToInt32(idUser); //lo converto in int per fare una query select
+            var userId = Convert.ToInt32(idUser); //converto in int per fare una query select
             string data = db.Users.Where(m => m.IdUser == userId).FirstOrDefault().Role; //cerco il ruolo di chi fa login in base all'id che arriva
             var roles = new string[] { data }; //metto in una lista di stringhe
             return roles; //restituisco ruoli con cui farò authorize roles

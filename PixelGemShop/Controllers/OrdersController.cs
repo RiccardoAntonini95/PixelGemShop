@@ -27,7 +27,7 @@ namespace PixelGemShop.Controllers
             int currentIdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var products = db.CartItems.Include(p => p.Products).Where(p => p.IdCart == currentIdCart).ToList();
             //1 - Generare l'ordine nella tabella orders
-            var order = new Orders //TODO: Se compro col carrello vuoto si genera comunque un ordine(nascondere bottone compra)
+            var order = new Orders 
             {
                 DateOrder = DateTime.Now,
                 IdUser = Convert.ToInt32(User.Identity.Name)

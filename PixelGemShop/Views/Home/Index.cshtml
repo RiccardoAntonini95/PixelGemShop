@@ -106,7 +106,6 @@
                             @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-primary" })
                         </div>
                         <div class="card-footer">
-                            @*TODO: FUNZIONALITA' PER AGGIUNGERE AL CARRELLO*@
                             @using (Html.BeginForm("AddToCart", "Cart"))
                             {
                                 @Html.AntiForgeryToken();

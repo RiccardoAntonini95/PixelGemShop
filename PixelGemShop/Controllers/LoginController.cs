@@ -34,7 +34,7 @@ namespace PixelGemShop.Controllers
                 if (ModelState.IsValid)
                 {
                     try
-                    { //TODO: nuovo user che si registra genera un suo carrello nel database 
+                    {
                         db.Users.Add(newUser);
                         Carts cart = new Carts();
                         cart.IdUser = newUser.IdUser;
@@ -55,7 +55,7 @@ namespace PixelGemShop.Controllers
 
         public ActionResult Login()
         {
-            if (HttpContext.User.Identity.IsAuthenticated) // se sei già loggato torna indietro
+            if (HttpContext.User.Identity.IsAuthenticated) 
             {
                 TempData["Fail"] = "You must log out before you can log in with another account.";
                 return RedirectToAction("Index", "Login");

@@ -14,7 +14,13 @@ namespace PixelGemShop.Controllers
         private DBContext db = new DBContext();
         // GET: Cart
         public ActionResult Index()
-        { //TODO: Alternativa se nessuno è loggato
+        { 
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["Fail"] = "You must log in first";
+                return RedirectToAction("Index", "Login");
+
+            }
             int currentUser = int.Parse(User.Identity.Name);
             int currentIdCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var products = db.CartItems.Include(p => p.Products).Where(p => p.IdCart == currentIdCart);
