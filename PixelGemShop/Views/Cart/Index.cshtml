@@ -47,9 +47,9 @@ else
                         @using (Html.BeginForm("UpdateQuantity", "Cart")){
                             @Html.AntiForgeryToken();
                         <input type="hidden" value="@product.IdProduct" name="idProductMod" />
-                        <button type="submit" name="increment">+</button>
-                        @product.Quantity
                         <button type="submit" name="decrement">-</button>
+                        @product.Quantity
+                        <button type="submit" name="increment">+</button>
                         }
                     </td>
                     @if (product.Products.DiscountPercentage == null)
@@ -73,7 +73,6 @@ else
                 </tr>
             }
         </tbody>
-        @*TODO: Aggiungere possibilità di modificare quantità (bottoni + e - item.quantity++ e item-quantity--)*@
     </table>
     <p class="text-success fw-bold">@total &euro;</p>
     <div>

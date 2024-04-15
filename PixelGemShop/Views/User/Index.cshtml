@@ -31,6 +31,12 @@
     </li>
     <li class="list-group-item">
         <div>
+            <h5>Address</h5>
+            <p>@Model.Address</p>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div>
             <h5>Phone</h5>
             @if (Model.Phone != null)
             {
@@ -39,19 +45,6 @@
             else
             {
                 <p>You haven't entered your phone number yet, <a href="#">do you want to do it now?</a></p>
-            }
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Address</h5>
-            @if (Model.Address != null)
-            {
-                <p>@Model.Address</p>
-            }
-            else
-            {
-                <p>You haven't entered your address yet, <a href="#">do you want to do it now?</a></p>
             }
         </div>
     </li>

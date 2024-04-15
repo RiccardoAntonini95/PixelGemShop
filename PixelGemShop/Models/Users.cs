@@ -46,6 +46,7 @@ namespace PixelGemShop.Models
         [StringLength(20)]
         public string Phone {  get; set; }
 
+        [Required]
         [StringLength(250)]
         public string Address { get; set; }
 

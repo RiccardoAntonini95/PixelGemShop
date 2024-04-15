@@ -14,7 +14,7 @@
         @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Name" })
         @Html.ValidationMessageFor(model => model.FirstName, "", new { style = "color: red; font-weight: bold;" })
     </div>
-
+    @*TODO: fai capire all'utente quali campi sono obbligatori*@
     <div class="form-group text-white text-center mb-2">
         @Html.LabelFor(model => model.LastName, "Surname: ", new { @class = "text-black" })
         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "Surname" })
