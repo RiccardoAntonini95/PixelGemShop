@@ -1,9 +1,31 @@
-﻿/*VARIABLES*/
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap');
+
+.lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.lato-bold-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+/*VARIABLES*/
 :root {
     --primary-color: #051923;
     --secondary-color: gold;
     --text-color: whitesmoke;
     --accent-color: #B503B2;
+    --darker-accent-color: #451e62;
 }
 
 .text-smoke{
@@ -17,7 +39,7 @@
 body {
     background: rgb(74,31,103);
     background: linear-gradient(59deg, rgba(74,31,103,1) 0%, rgba(5,25,35,1) 49%, rgba(83,2,79,1) 100%);
-    color: var(--secondary-color);
+    font-family: "Lato", sans-serif;
 }
 
 .btn {
@@ -25,13 +47,10 @@ body {
     color: var(--text-color);
 }
 
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+.btn-darker-accent{
+    background-color: var(--darker-accent-color);
 }
+
 
 section{
     margin-top: 2em;
@@ -138,7 +157,7 @@ nav {
     top: -3px;
     left: 14px;
     border-radius: 50%;
-    display: flex; /*none di default e flex quando c'è qualcosa nel carrello usare classi d-none e d-flex*/
+    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.7em;
@@ -157,13 +176,18 @@ nav {
 }
 
 .card-img-top{
-    height: 100px;
+    height: 160px;
     object-fit: cover;
 }
 
 .card-img-top:hover {
     transform: scale(1.2);
     transition: transform 0.3s ease;
+}
+
+.card-footer input[type=number] {
+    background: linear-gradient(59deg, rgba(74,31,103,1) 0%, rgba(5,25,35,1) 49%, rgba(83,2,79,1) 100%);
+    color: var(--text-color);
 }
 
 /*STARS*/
@@ -203,10 +227,8 @@ nav {
 }
 
 #heroText {
-    font-family: "Anton", sans-serif;
     font-weight: bold;
     padding: 3em;
-    color: gold;
 }
 
 /*EDITOR'S CHOICE SECTION*/

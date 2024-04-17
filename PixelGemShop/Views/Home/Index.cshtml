@@ -13,30 +13,30 @@
     @*HERO*@
     <div id="hero" class="text-center position-relative d-flex justify-content-center align-items-center">
         <video src="@Url.Content("~/Uploads/gem-video.mp4")" id="youtube" autoplay muted loop></video>
-        <h1 id="heroText">"Unearth Gaming Gems at Pixel Gem Shop: Where Every Purchase is Sparkling Treasure!"</h1>
+        <h1 id="heroText" class="text-gold">"Unearth Gaming Gems at Pixel Gem Shop: Where Every Purchase is Sparkling Treasure!"</h1>
     </div>
 
     @*IN PRIMO PIANO*@
     <section class="text-center">
-        <h2>Editor's Choice</h2>
+        <h2 class="fw-bold text-gold">Editor's Choice</h2>
         <div class="editors-choice">
             <div class="row gx-2 m-0">
                 @for (int i = 0; i < 4; i++)
                 {
                     var product = ViewBag.editorsChoice[i];
-                    <div class="card col-6 col-md-3">
+                    <div class="card col-6 col-md-3 text-smoke">
                         <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
-                            <h5 class="card-title text-smoke">@product.Name</h5>
-                            <p>Avg rating: @product.AverageRating</p>
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="text-gold">Average rating: @product.AverageRating</p>
                             @if (product.DiscountPercentage == null)
                             {
-                                <p class="card-text text-smoke">@product.Price&euro;</p>
+                                <p class="card-text">@product.Price&euro;</p>
                             }
                             else
                             {
                                 <p>
-                                    <span class="text-decoration-line-through text-smoke">@product.Price&euro;</span> -@product.DiscountPercentage%
+                                    <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
                                     <br>
                                     <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
 
@@ -51,7 +51,6 @@
                                 <p class="text-danger">Product out of stock</p>
                                 //TODO: Non deve essere acquistabile se out of stock
                             }
-                            @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn" })
                         </div>
                         <div class="card-footer">
                             @using (Html.BeginForm("AddToCart", "Cart"))
@@ -62,6 +61,7 @@
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn" type="submit">Add to cart</button>
+                                @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent" })
                                 if (User.IsInRole("Admin"))
                                 {
                                     @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn btn-warning" })
@@ -78,19 +78,19 @@
     @*OFFERTE*@
     <section class="text-center">
         @*TODO: Link Vedi Altro*@
-        <h2>Savings Zone</h2>
+        <h2 class="fw-bold text-gold">Savings Zone</h2>
         <div class="savings">
             <div class="row m-0">
                 @for (int i = 0; i < Math.Min(ViewBag.savings.Count, 6); i++)   //cicla il numero minimo di prodotti tra viewbag e 6
                 {
                     var product = ViewBag.savings[i];
-                    <div class="col-4 col-md-2 card">
+                    <div class="col-4 col-md-2 card text-smoke">
                         <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
-                            <h5 class="card-title text-smoke">@product.Name</h5>
-                            <p>Avg rating: @product.AverageRating</p>
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="text-gold">Average rating: @product.AverageRating</p>
                             <p class="card-text">
-                                <span class="text-decoration-line-through text-smoke">@product.Price&euro;</span> -@product.DiscountPercentage%
+                                <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
                                 <br>
                                 <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
                                 @*Questo valore serve nel carrello*@
@@ -103,7 +103,6 @@
                             {
                                 <p class="text-danger">Product out of stock</p>
                             }
-                            @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn" })
                         </div>
                         <div class="card-footer">
                             @using (Html.BeginForm("AddToCart", "Cart"))
@@ -114,6 +113,7 @@
                                 <label for="quantity-@i">Quantity: </label>
                                 <input type="number" class="form-control" id="quantity-@i" min="1" name="quantity">
                                 <button class="btn" type="submit">Add to cart</button>
+                                @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent" })
                                 if (User.IsInRole("Admin"))
                                 {
                                     @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn" })
@@ -130,8 +130,8 @@
     @*SHOP BY CATEGORIES*@
     <section>
         <div class="shop-by-categories text-center">
-            <h2>Shop by categories</h2>
-            <div class="row gap-2">
+            <h2 class="fw-bold text-gold">Shop by categories</h2>
+            <div class="row g-0 gap-2">
                 <div class="category-container videogames col">
                     @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link" })
                 </div>
