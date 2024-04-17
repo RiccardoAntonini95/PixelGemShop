@@ -50,7 +50,7 @@ namespace PixelGemShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Products products, HttpPostedFileBase Image)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //TODO: GUARDA EDIT DI LINKEDIN PER LA MODIFICA FOTO
             {
                 if (Image != null && Image.ContentLength > 0)
                 {

@@ -29,7 +29,7 @@
         <div class="loader"></div>
     </div>
 
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm position-sticky top-0">
         <div class="container">
             <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -63,7 +63,7 @@
                 @if (authCookie == null)
                 {
                     <ul class="navbar-nav">
-                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn btn-success" })</li>
+                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn" })</li>
                     </ul>
                 }
                 @if (authCookie != null)
@@ -90,7 +90,7 @@
                         <li>
                             <form action="@Url.Action("Logout", "Login")" method="post">
                                 @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-danger">Logout</button>
+                                <button type="submit" class="btn">Logout</button>
                             </form>
                         </li>
                     </ul>
