@@ -62,8 +62,8 @@
                 </ul>
                 @if (authCookie == null)
                 {
-                    <ul class="navbar-nav">
-                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn" })</li>
+                    <ul class="navbar-nav text-smoke">
+                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn glow-on-hover" })</li>
                     </ul>
                 }
                 @if (authCookie != null)
@@ -71,7 +71,7 @@
                     <ul class="navbar-nav align-items-center gap-3">
                         @if (firstNameUser != "")
                         {
-                            <li class="text-white">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline text-gold">@firstNameUser</a></li>
+                            <li class="text-smoke">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline text-gold">@firstNameUser</a></li>
                         }
                     <li>
                         <div class="position-relative">
@@ -87,10 +87,10 @@
                             </a>
                         </div>
                     </li>
-                        <li>
+                        <li class="text-smoke">
                             <form action="@Url.Action("Logout", "Login")" method="post">
                                 @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-darker-accent">Logout</button>
+                                <button type="submit" class="btn btn-darker-accent glow-on-hover">Logout</button>
                             </form>
                         </li>
                     </ul>

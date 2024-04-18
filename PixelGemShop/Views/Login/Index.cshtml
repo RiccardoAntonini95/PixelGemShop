@@ -22,9 +22,9 @@
 {
 
     <h2 class="text-center mb-5">Welcome, sign up or login if you own an account</h2>
-    <div class="container d-flex align-content-center align-items-center flex-column">
-        @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "btn btn-darker-accent m-2" })
-        @Html.ActionLink("Login", "Login", "Login", null, new { @class = "btn m-2" })
+    <div class="container d-flex align-content-center align-items-center flex-column text-smoke">
+        @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "btn btn-darker-accent m-2 glow-on-hover" })
+        @Html.ActionLink("Login", "Login", "Login", null, new { @class = "btn m-2 glow-on-hover" })
     </div>
 }
 else
@@ -33,7 +33,7 @@ else
     <p>Logout: </p>
     <form action="@Url.Action("Logout", "Login")" method="post">
         @Html.AntiForgeryToken()
-        <button type="submit" class="btn">Logout</button>
+        <button type="submit" class="btn glow-on-hover">Logout</button>
     </form>
 }
 

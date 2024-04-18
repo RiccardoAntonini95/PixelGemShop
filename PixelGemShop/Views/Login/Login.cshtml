@@ -8,7 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
-    <div class="container d-flex align-content-center align-items-center flex-column">
+    <div class="container d-flex align-content-center align-items-center flex-column text-smoke">
         <div class="form-group text-white text-center mb-3">
             @Html.LabelFor(model => model.Email, "E-mail: ", new { @class = "text-black" })
             @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "E-mail" })
@@ -19,6 +19,6 @@
             @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
             @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
         </div>
-        <button class="btn btn-primary text-white">Login</button>
+        <button class="btn glow-on-hover">Login</button>
     </div>
 }
