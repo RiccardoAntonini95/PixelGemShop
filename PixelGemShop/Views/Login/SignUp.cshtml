@@ -10,47 +10,47 @@
     @Html.AntiForgeryToken();
 <div class="container d-flex align-content-center align-items-center flex-column">
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.FirstName, "Name: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Name" })
+        @Html.LabelFor(model => model.FirstName, "Name: ")
+        @Html.TextBoxFor(model => model.FirstName, new { placeholder = "Name" })
         @Html.ValidationMessageFor(model => model.FirstName, "", new { style = "color: red; font-weight: bold;" })
     </div>
     @*TODO: fai capire all'utente quali campi sono obbligatori*@
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.LastName, "Surname: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "Surname" })
+        @Html.LabelFor(model => model.LastName, "Surname: ")
+        @Html.TextBoxFor(model => model.LastName, new { placeholder = "Surname" })
         @Html.ValidationMessageFor(model => model.LastName, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.Username, "Username:  ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Username" })
+        @Html.LabelFor(model => model.Username, "Username:  ")
+        @Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })
         @Html.ValidationMessageFor(model => model.Username, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.Password, "Password: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.LabelFor(model => model.Password, "Password: ")
+        @Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })
         @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.Email, "E-mail: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "E-mail" })
+        @Html.LabelFor(model => model.Email, "E-mail: ")
+        @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail" })
         @Html.ValidationMessageFor(model => model.Email, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.Phone, "Phone: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", placeholder = "Phone" })
+        @Html.LabelFor(model => model.Phone, "Phone: ")
+        @Html.TextBoxFor(model => model.Phone, new { placeholder = "Phone" })
         @Html.ValidationMessageFor(model => model.Phone, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
     <div class="form-group text-white text-center mb-2">
-        @Html.LabelFor(model => model.Address, "Address: ", new { @class = "text-black" })
-        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Address" })
+        @Html.LabelFor(model => model.Address, "Address: ")
+        @Html.TextBoxFor(model => model.Address, new { placeholder = "Address" })
         @Html.ValidationMessageFor(model => model.Address, "", new { style = "color: red; font-weight: bold;" })
     </div>
 
-    <button class="btn btn-darker-accent text-white">Sign Up</button>
+    <button class="btn btn-darker-accent glow-on-hover">Sign Up</button>
 </div>
 }

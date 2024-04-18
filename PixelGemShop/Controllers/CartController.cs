@@ -17,7 +17,7 @@ namespace PixelGemShop.Controllers
         { 
             if (!User.Identity.IsAuthenticated)
             {
-                TempData["Fail"] = "You must log in first";
+                TempData["Message"] = "You must log in first";
                 return RedirectToAction("Index", "Login");
 
             }
@@ -33,7 +33,7 @@ namespace PixelGemShop.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                TempData["Fail"] = "To add this product to your cart you must log in";
+                TempData["Message"] = "To add this product to your cart you must log in";
                 return RedirectToAction("Index", "Login");
 
             }
@@ -102,7 +102,7 @@ namespace PixelGemShop.Controllers
             {
                 db.CartItems.Remove(productToRemove);
                 db.SaveChanges();
-                TempData["Success"] = "Product removed from cart";
+                TempData["Message"] = "Product removed from cart";
                 return RedirectToAction("Index", "Cart");
             }
             return RedirectToAction("Index", "Cart");

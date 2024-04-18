@@ -5,17 +5,10 @@
 }
 
 <h2>Recap Cart</h2>
-
-@if (TempData["Success"] != null)  //Feedback positivo riuscita operazione
+@if (TempData["Message"] != null)  
 {
-    <div class="alert alert-success" role="alert">
+    <div class="alert" role="alert">
         @TempData["Success"]
-    </div>
-}
-@if (TempData["Selled"] != null)  //Feedback positivo vendita
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["Selled"]
     </div>
 }
 
@@ -44,12 +37,13 @@ else
                     <td>@product.Products.Name</td>
                     <td><img src="@Url.Content("~/Uploads/" + product.Products.Image)" alt="product-image" /></td>
                     <td>
-                        @using (Html.BeginForm("UpdateQuantity", "Cart")){
+                        @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                        {
                             @Html.AntiForgeryToken();
-                        <input type="hidden" value="@product.IdProduct" name="idProductMod" />
-                        <button type="submit" class="btn btn-darker-accent glow-on-hover" name="decrement">-</button>
-                        @product.Quantity
-                        <button type="submit" class="btn glow-on-hover" name="increment">+</button>
+                            <input type="hidden" value="@product.IdProduct" name="idProductMod" />
+                            <button type="submit" class="btn btn-darker-accent glow-on-hover" name="decrement">-</button>
+                            @product.Quantity
+                            <button type="submit" class="btn glow-on-hover" name="increment">+</button>
                         }
                     </td>
                     @if (product.Products.DiscountPercentage == null)

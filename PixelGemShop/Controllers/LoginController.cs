@@ -45,7 +45,7 @@ namespace PixelGemShop.Controllers
                     {
                         return View(ex.Message);
                     }
-                    TempData["Success"] = "You have signed up for a new account";
+                    TempData["Message"] = "You have signed up for a new account";
                     return RedirectToAction("Index", "Login");
                 }
                 return View();
@@ -57,7 +57,7 @@ namespace PixelGemShop.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated) 
             {
-                TempData["Fail"] = "You must log out before you can log in with another account.";
+                TempData["Message"] = "You must log out before you can log in with another account.";
                 return RedirectToAction("Index", "Login");
             }
             return View();
@@ -77,7 +77,7 @@ namespace PixelGemShop.Controllers
                         if (loggedUser != null)
                         {
                             FormsAuthentication.SetAuthCookie(loggedUser.IdUser.ToString(), true);//salvo l'id ottenuto dalla select e lo passo al rolemanager
-                            TempData["Success"] = "Logged in successfully";
+                            TempData["Message"] = "Logged in successfully";
                             return RedirectToAction("Index", "Home");
                         }
                     }
@@ -86,7 +86,7 @@ namespace PixelGemShop.Controllers
                         return View(ex.Message);
                     }
                 }
-                TempData["Fail"] = "Invalid credentials";
+                TempData["Message"] = "Invalid credentials";
                 return RedirectToAction("Index", "Login");
             }
         }
@@ -96,7 +96,7 @@ namespace PixelGemShop.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            TempData["Fail"] = "Logged Out successfully";
+            TempData["Message"] = "Logged Out successfully";
             return RedirectToAction("Index", "Login");
         }
     }

@@ -65,7 +65,7 @@ namespace PixelGemShop.Controllers
                     db.SaveChanges();
                 }
             }
-            TempData["Selled"] = "Thanks for purchasing!";
+            TempData["Message"] = "Thanks for purchasing!";
             return RedirectToAction("Index", "Cart");
         }
     }
