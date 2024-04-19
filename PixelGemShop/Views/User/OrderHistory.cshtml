@@ -22,7 +22,7 @@
                     <p class="text-gold">@orderDetail.ProductPrice &euro;</p>
                     @if (orderDetail.IdProduct != null)
                     {
-                    @Html.ActionLink("Write a Review", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, null)
+                    @Html.ActionLink("Leave a feedback", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct}, new { @class = "btn glow-on-hover" })
                         //modale per recensione qua
                     }
                 </div>
@@ -31,4 +31,5 @@
         }
     </div>
 }
+@Html.ActionLink("Back to profile", "Index", "User", new { @class = "btn glow-on-hover" })
 

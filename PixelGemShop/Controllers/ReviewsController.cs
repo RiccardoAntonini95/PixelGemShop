@@ -41,6 +41,7 @@ namespace PixelGemShop.Controllers
             };
             db.Reviews.Add(newReview);
             db.SaveChanges();
+            TempData["Message"] = "Thank you for your feedback!";
             return RedirectToAction("OrderHistory", "User");
         }
 
@@ -56,6 +57,7 @@ namespace PixelGemShop.Controllers
         {
             db.Entry(reviewToEdit).State = EntityState.Modified;
             db.SaveChanges();
+            TempData["Message"] = "Feedback modified!";
             return RedirectToAction("Index", new { id = reviewToEdit.IdUser});
         }
 
@@ -66,7 +68,7 @@ namespace PixelGemShop.Controllers
             var reviewToDelete = db.Reviews.Find(IdReview);
             db.Reviews.Remove(reviewToDelete);
             db.SaveChanges();
-            TempData["Message"] = "Review deleted!";
+            TempData["Message"] = "Feedback deleted!";
             return RedirectToAction("Index", new { id = IdUser });         
         }
     }

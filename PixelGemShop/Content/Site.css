@@ -347,3 +347,11 @@ input:focus {
     max-height: 300px;
     object-fit: cover;
 }
+
+/*CART*/
+@media (max-width: 768px){
+    .cart-img{
+        width: 125px;
+        height: 75px;
+    }
+}

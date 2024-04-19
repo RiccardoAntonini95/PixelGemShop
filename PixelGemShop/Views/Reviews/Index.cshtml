@@ -1,27 +1,35 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert" role="alert">
+        @TempData["Message"]
+    </div>
+}
 <h2>Your Reviews</h2>
 <div>
     @foreach (var review in Model)
     {
-        <div class="border border-black">
-            <p>@review.Users.Username</p>
-            <p>@review.Products.Name</p>
-            <p>@review.Rate</p>
-            <p>@review.Description</p>
+        <div class="row">
+            <div class="col-4">
+                <img src="@Url.Content("~/Uploads/" + review.Products.Image)" class="w-100" />
+            </div>
+            <div class="col-8">
+                <p>@review.Products.Name</p>
+                <p>@review.Description</p>
+                <p>@review.Rate Stars</p>
+                <a href="@Url.Action("EditReview","Reviews", new {id = review.IdReview})" class="btn glow-on-hover">Edit</a>
+                @using (Html.BeginForm("DeleteReview", "Reviews"))
+                {
+                    @Html.AntiForgeryToken();
+                    <input type="hidden" value="@review.IdReview" name="IdReview" />
+                    <input type="hidden" value="@review.IdUser" name="IdUser" />
+                    <button type="submit" class="btn btn-darker-accent glow-on-hover">Delete</button>
+                }
+            </div>
         </div>
-
-        <a href="@Url.Action("EditReview","Reviews", new {id = review.IdReview})" class="btn glow-on-hover" >Edit</a>
-
-        using (Html.BeginForm("DeleteReview", "Reviews"))
-        {
-            @Html.AntiForgeryToken();
-            <input type="hidden" value="@review.IdReview" name="IdReview" />
-            <input type="hidden" value="@review.IdUser" name="IdUser" />
-            <button type="submit" class="btn btn-darker-accent glow-on-hover">Delete</button>
-        }
     }
+    @Html.ActionLink("Back to profile", "Index", "User", null, new { @class = "btn glow-on-hover" })
 </div>
 
