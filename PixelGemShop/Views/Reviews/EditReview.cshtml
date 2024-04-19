@@ -19,13 +19,13 @@
         @Html.HiddenFor(model => model.IdProduct)
 
         <div>
-            @Html.LabelFor(model => model.Rate)
+            @Html.LabelFor(model => model.Rate, "Rate: ")
             @Html.EditorFor(model => model.Rate)
             @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
         </div>
 
         <div>
-            @Html.LabelFor(model => model.Description)
+            @Html.LabelFor(model => model.Description, "Review: ")
             @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
@@ -35,5 +35,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new { id = Model.IdUser })
+    @Html.ActionLink("Back", "Index", new { id = Model.IdUser }, new {@class = "btn glow-on-hover" })
 </div>

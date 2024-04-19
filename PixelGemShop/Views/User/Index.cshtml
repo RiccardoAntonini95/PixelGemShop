@@ -1,4 +1,10 @@
-﻿
+﻿@functions {
+    public string CensorPass(string password)
+    {
+        return new string('*', password.Length);
+    }
+}
+
 @{
     ViewBag.Title = "Index";
 }
@@ -25,7 +31,7 @@
     </div>
     <div>
         <h5>Password</h5>
-        <p>@Model.Password</p> @*TODO: Censurare*@
+        <p>@CensorPass(Model.Password)</p>
     </div>
     <div>
         <h5>Address</h5>
