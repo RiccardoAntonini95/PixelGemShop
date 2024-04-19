@@ -5,64 +5,49 @@
 
 @*TODO: Modifica account ed elimina account con conferma password*@
 
-<h2>My Account</h2>
-<a href="@Url.Action("Edit", "User")" class="btn glow-on-hover">Edit</a>
-<a href="@Url.Action("Delete", "User")" class="btn btn-darker-accent glow-on-hover">Delete</a>
-<ul class="list-group">
-    <li class="list-group-item">
-        <div>
-            <h5>Name</h5>
-            <p>@Model.FirstName @Model.LastName</p>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>E-Mail</h5>
-            <p>@Model.Email</p>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Username</h5>
-            <p>@Model.Username</p>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Password</h5>
-            <p>@Model.Password</p>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Address</h5>
-            <p>@Model.Address</p>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Phone</h5>
-            @if (Model.Phone != null)
-            {
-                <p>@Model.Phone</p>
-            }
-            else
-            {
-                <p>You haven't entered your phone number yet, <a href="@Url.Action("Edit", "User")">do you want to do it now?</a></p>
-            }
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>Order History</h5>
-            <a href="@Url.Action("OrderHistory", "User")">See it Now!</a>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div>
-            <h5>All my reviews</h5>
-            <a href="@Url.Action("Index", "Reviews", new {id = Model.IdUser})">See it Now!</a>
-        </div>
-    </li>
-</ul>
+<div class="text-center">
+    <h2>My Account</h2>
+    <a href="@Url.Action("Edit", "User")" class="btn glow-on-hover">Edit</a>
+    <a href="@Url.Action("Delete", "User")" class="btn btn-darker-accent glow-on-hover">Delete</a>
+    <div>
+        <h5>Name</h5>
+        <p>@Model.FirstName @Model.LastName</p>
+    </div>
+    <div>
+        <h5>E-Mail</h5>
+        <p>@Model.Email</p>
+    </div>
+    <div>
+        <h5>Username</h5>
+        <p>@Model.Username</p>
+    </div>
+    <div>
+        <h5>Password</h5>
+        <p>@Model.Password</p> @*TODO: Censurare*@
+    </div>
+    <div>
+        <h5>Address</h5>
+        <p>@Model.Address</p>
+    </div>
+    <div>
+        <h5>Phone</h5>
+        @if (Model.Phone != null)
+        {
+            <p>@Model.Phone</p>
+        }
+        else
+        {
+            <p>You haven't entered your phone number yet, <a href="@Url.Action("Edit", "User")">do you want to do it now?</a></p>
+        }
+    </div>
+    <div>
+        <h5>Order History</h5>
+        <a href="@Url.Action("OrderHistory", "User")">See it Now!</a>
+    </div>
+    <div>
+        <h5>All my reviews</h5>
+        <a href="@Url.Action("Index", "Reviews", new {id = Model.IdUser})">See it Now!</a>
+    </div>
+</div>
+
 

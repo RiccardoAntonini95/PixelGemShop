@@ -8,16 +8,27 @@
 @foreach (var order in Model)
 {
     <div class="border border-black">
+        <div>
+            <p>Order placed on: <br /> @order.DateOrder</p>
+        </div>
         @foreach (var orderDetail in order.OrderDetails)
         {
-            <p>@orderDetail.Quantity x @orderDetail.ProductName</p>
-            <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="" width="30" height="30" alt="product-image" />
-            if (orderDetail.IdProduct != null)
-            {
-                @Html.ActionLink("Write a Review", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, null)
-            }
+            <div class="row">
+                <div class="col-4">
+                    <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="w-100 h-100" width="30" height="30" alt="product-image" />
+                </div>
+                <div class="col-8">
+                    <p>@orderDetail.Quantity x @orderDetail.ProductName</p>
+                    <p class="text-gold">@orderDetail.ProductPrice &euro;</p>
+                    @if (orderDetail.IdProduct != null)
+                    {
+                    @Html.ActionLink("Write a Review", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, null)
+                        //modale per recensione qua
+                    }
+                </div>
+            </div>
+
         }
-        <p>@order.DateOrder</p>
     </div>
 }
 

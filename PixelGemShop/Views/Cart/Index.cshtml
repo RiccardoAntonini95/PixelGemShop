@@ -4,39 +4,32 @@
     decimal total = 0;
 }
 
-<h2>Recap Cart</h2>
-@if (TempData["Message"] != null)  
-{
-    <div class="alert" role="alert">
-        @TempData["Success"]
-    </div>
-}
+<div class="container">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <h2>Your Cart</h2>
 
-@if (Model.Count == 0)
-{
-    <h3>Your cart is empty, shall we fill it?</h3>
-    <a href="@Url.Action("Index","Home")" class="btn glow-on-hover">Go for it!</a>
+    @if (Model.Count == 0)
+    {
+        <h3>Your cart is empty, shall we fill it?</h3>
+        <a href="@Url.Action("Index","Home")" class="btn glow-on-hover">Go for it!</a>
 
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product name</th>
-                <th>Image</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model)
-            {
-                <tr>
-                    <td>@product.Products.Name</td>
-                    <td><img src="@Url.Content("~/Uploads/" + product.Products.Image)" alt="product-image" /></td>
-                    <td>
+    }
+    else
+    {
+        foreach (var product in Model)
+        {
+            <div class="row">
+                <div class="col-4 text-center">
+                    <img src="@Url.Content("~/Uploads/" + product.Products.Image)" alt="product-image" width="200" height="150" class="object-fit-fill" />
+                </div>
+                <div class="col-8">
+                    <p>@product.Products.Name</p>
+                    <p>
                         @using (Html.BeginForm("UpdateQuantity", "Cart"))
                         {
                             @Html.AntiForgeryToken();
@@ -45,38 +38,42 @@ else
                             @product.Quantity
                             <button type="submit" class="btn glow-on-hover" name="increment">+</button>
                         }
-                    </td>
+                    </p>
                     @if (product.Products.DiscountPercentage == null)
                     {
-                        <td>@product.Products.Price &euro;</td>
+                        <p class="text-gold">@product.Products.Price &euro;</p>
                         total += product.Products.Price * product.Quantity;
                     }
                     else
                     {
-                        <td>@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</td>
+                        <p class="text-gold">@(Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2))&euro;</p>
                         total += (Math.Round(product.Products.Price - (product.Products.Price * ((decimal)product.Products.DiscountPercentage / 100M)), 2) * product.Quantity);
                     }
                     @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { id = $"removeFromCartForm_{product.IdProduct}" }))
                     {
                         @Html.AntiForgeryToken()
-                        <td class="text-smoke">
+                        <p class="text-smoke">
                             <input type="hidden" value="@product.IdProduct" name="idProduct" />
                             <button class="btn btn-darker-accent glow-on-hover" type="submit">Remove From Cart</button>
-                        </td>
+                        </p>
                     }
-                </tr>
-            }
-        </tbody>
-    </table>
-    <p class="text-success fw-bold">@total &euro;</p>
-    <div>
-        @using (Html.BeginForm("OrderNow", "Orders"))
-        {
-            @Html.AntiForgeryToken();
-            <button class="btn glow-on-hover" type="submit">Buy Now</button>
+                </div>
+            </div>
         }
-    </div>
-}
+        <div class="text-end border-top">
+            <p class="fw-bold">Total:<br /><span class="text-gold">@total &euro;</span></p>
+            <div>
+                @using (Html.BeginForm("OrderNow", "Orders"))
+                {
+                    @Html.AntiForgeryToken();
+                    <button class="btn glow-on-hover" type="submit">Buy Now</button>
+                }
+            </div>
+        </div>
+
+    }
+</div>
+
 
 
 

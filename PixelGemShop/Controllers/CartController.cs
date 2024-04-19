@@ -77,12 +77,14 @@ namespace PixelGemShop.Controllers
                     productToModify.Quantity++;
                     db.Entry(productToModify).State = EntityState.Modified;
                     db.SaveChanges();
+                    TempData["Message"] = "Product added to cart";
                 }
                 else if(decrement != null)
                 {
                     productToModify.Quantity--;
                     db.Entry(productToModify).State = EntityState.Modified;
                     db.SaveChanges();
+                    TempData["Message"] = "Product removed from cart";
                 }
                 if (productToModify.Quantity == 0)
                 {
