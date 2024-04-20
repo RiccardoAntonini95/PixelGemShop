@@ -32,9 +32,16 @@ namespace PixelGemShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdUser, Username, Password, Email, Role, FirstName, LastName, Phone, Address")] Users user)
         {
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(user);
+            }
         }
 
         public ActionResult Delete()
@@ -52,7 +59,7 @@ namespace PixelGemShop.Controllers
         public ActionResult OrderHistory()
         {
             var currentUser = int.Parse(User.Identity.Name);
-            var orders = db.Orders.Where(o => o.IdUser == currentUser).Include(o => o.OrderDetails);
+            var orders = db.Orders.Where(o => o.IdUser == currentUser).Include(o => o.OrderDetails).OrderByDescending(o => o.DateOrder);
             return View(orders.ToList());
         }
     }

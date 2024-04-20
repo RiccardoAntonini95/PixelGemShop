@@ -7,64 +7,45 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="text-center">
-        <h4 class="fw-bold">Settings</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdUser)
 
-        <div>
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.Username)
-            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-        </div>
+<div class="d-flex flex-column align-items-center text-center">
+    <h4 class="fw-bold">Settings</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdUser)
+    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.Username)
+    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
+    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.FirstName)
+    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
 
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
+    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.LastName)
+    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
 
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-        </div>
+    @Html.EditorFor(model => model.Phone)
+    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.Address)
+    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-        </div>
+<div>
+    <button class="btn glow-on-hover" type="submit">Save</button>
+    @Html.ActionLink("Back", "Index", "User", new { @class = "btn btn-darker-accent glow-on-hover" })
+</div>
 
-        <div>
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            @Html.EditorFor(model => model.Phone)
-            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            @Html.EditorFor(model => model.Address)
-            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
-            <input type="submit" value="Save" class="btn glow-on-hover" />
-            @Html.ActionLink("Back to List", "Index", new {@class = "btn glow-on-hover"})
-        </div>
-    </div>
+</div>
 }
 
