@@ -3,45 +3,51 @@
     ViewBag.Title = "AddReview";
 }
 <style>
-.star {
-    fill: grey;
-    transition: fill 0.2s;
-    cursor: pointer;
-}
+    .star {
+        fill: grey;
+        transition: fill 0.2s;
+        cursor: pointer;
+    }
 
-.star:hover, .star.active {
-    fill: gold;
-}
+        .star:hover, .star.active {
+            fill: gold;
+        }
 </style>
 
-<h2>Add Review</h2>
+<div class="text-center">
+    <h2>Add Review</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken();
-    <input type="hidden" name="IdUser" value="@User.Identity.Name" />
-    <input type="hidden" name="IdProduct" value="@ViewBag.ProductId" />
-    <div class="rating">
-        <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1)">
-            <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-        </svg>
-        <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(2)">
-            <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-        </svg>
-        <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(3)">
-            <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-        </svg>
-        <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(4)">
-            <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-        </svg>
-        <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(5)">
-            <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-        </svg>
-    </div>
-    <input type="hidden" id="Rate" name="Rate" value="" />
-    @Html.EditorFor(model => model.Description)
-    <button type="submit" class="btn glow-on-hover">Submit</button>
-}
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken();
+        <input type="hidden" name="IdUser" value="@User.Identity.Name" />
+        <input type="hidden" name="IdProduct" value="@ViewBag.ProductId" />
+        <div class="rating">
+            <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1)">
+                <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+            </svg>
+            <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(2)">
+                <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+            </svg>
+            <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(3)">
+                <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+            </svg>
+            <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(4)">
+                <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+            </svg>
+            <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(5)">
+                <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+            </svg>
+        </div>
+        <input type="hidden" id="Rate" name="Rate" value="" />
+        @Html.EditorFor(model => model.Description)
+        <div>
+            <button type="submit" class="btn glow-on-hover">Submit</button>
+            @Html.ActionLink("Back", "OrderHistory", "User", null, new { @class = "btn btn-darker-accent glow-on-hover" })
+        </div>
+    }
+</div>
+
 
 @section scripts {
     <script>
