@@ -14,26 +14,29 @@
         <h3 class="display-3">@Html.DisplayFor(model => model.Name)</h3>
         <a href="#reviews" class="text-gold text-decoration-none fw-bold">Average rating</a>
         <hr />
-        <div class="d-flex flex-wrap">
-            <div class="col-6 col-md-2 text-end">
-                <p class="fw-bold text-gold">Recommended price:</p>
+        @*<div class="d-flex flex-wrap">*@
+            <div class="d-flex flex-wrap">
+                <div class="col-6 col-md-3 col-lg-2 text-end">
+                    <p class="fw-bold text-gold">Recommended price:</p>
+                </div>
+                <div class="col-6 col-md-9 col-lg-10">
+                    <p class="ps-1">@Html.DisplayFor(model => model.Price)&euro;</p>
+                </div>
                 @if (Model.DiscountPercentage != null)
                 {
-                    <p class="fw-bold text-gold">Discounted Price:</p>
+                    <div class="col-6 col-md-3 col-lg-2 text-end">
+                        <p class="fw-bold text-gold">Discounted Price:</p>
+                    </div>
+                    <div class="col-6 col-md-9 col-lg-10">
+                        <p class="ps-1">
+                            <span class="text-decoration-line-through">@Model.Price&euro;</span> -@Model.DiscountPercentage%
+                            <br>
+                            <span class="text-gold fw-bold">@(Math.Round(Model.Price - (Model.Price * ((decimal)Model.DiscountPercentage / 100M)), 2))&euro;</span>
+                        </p>
+                    </div>
                 }
             </div>
-            <div class="col-6 col-md-10">
-                <p>@Html.DisplayFor(model => model.Price)&euro;</p>
-                @if(Model.DiscountPercentage != null)
-            {
-                    <p>
-                        <span class="text-decoration-line-through">@Model.Price&euro;</span> -@Model.DiscountPercentage%
-                        <br>
-                        <span class="text-gold fw-bold">@(Math.Round(Model.Price - (Model.Price * ((decimal)Model.DiscountPercentage / 100M)), 2))&euro;</span>
-                    </p>
-            }
-            </div>
-        </div>
+        @*</div>*@
         <hr />
         <p>
             <span class="fw-bold text-gold">Information about this article:</span>
