@@ -6,80 +6,61 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Products</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Categories.ProductCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categories.ProductCategory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
+<div class="d-flex flex-wrap">
+    <div class="col-12 col-md-4">
+        <img src="@Url.Content("~/Uploads/" + Model.Image)" alt="Product Image" class="img-fluid position-sticky details-img" />
+    </div>
+    <div class="col-12 col-md-8">
+        <h3 class="display-3">@Html.DisplayFor(model => model.Name)</h3>
+        <a href="#reviews" class="text-gold text-decoration-none fw-bold">Average rating</a>
+        <hr />
+        <div class="d-flex flex-wrap">
+            <div class="col-6 col-md-2 text-end">
+                <p class="fw-bold text-gold">Recommended price:</p>
+                @if (Model.DiscountPercentage != null)
+                {
+                    <p class="fw-bold text-gold">Discounted Price:</p>
+                }
+            </div>
+            <div class="col-6 col-md-10">
+                <p>@Html.DisplayFor(model => model.Price)&euro;</p>
+                @if(Model.DiscountPercentage != null)
+            {
+                    <p>
+                        <span class="text-decoration-line-through">@Model.Price&euro;</span> -@Model.DiscountPercentage%
+                        <br>
+                        <span class="text-gold fw-bold">@(Math.Round(Model.Price - (Model.Price * ((decimal)Model.DiscountPercentage / 100M)), 2))&euro;</span>
+                    </p>
+            }
+            </div>
+        </div>
+        <hr />
+        <p>
+            <span class="fw-bold text-gold">Information about this article:</span>
+            <br />
             @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            <img src="@Url.Content("~/Uploads/" + Model.Image)" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiscountPercentage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiscountPercentage)
-        </dd>
-
-    </dl>
+        </p>
+        <hr />
+        <div id="reviews">
+            <h4 class="text-gold fw-bold">Reviews</h4>
+            @foreach (var review in ViewBag.Reviews)
+            {
+                <div class="border border-black">
+                    <p class="fw-bold">
+                        @review.Users.Username
+                        <br />
+                        <span class="text-gold">Rating: @review.Rate</span>
+                        <br />
+                    </p>
+                    <p>@review.Description</p>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-<h4>Reviews</h4>
-<div>
-    @foreach (var review in ViewBag.Reviews)
-    {
-        <div class="border border-black">
-            <p>recensione: @review.Description</p>
-            <p>Voto: @review.Rate</p>
-            <p>Scritto da @review.Users.Username</p>
-        </div>
-    }
-</div>
+

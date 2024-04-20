@@ -355,3 +355,8 @@ input:focus {
         height: 75px;
     }
 }
+
+/*DETAILS PAGE*/
+.details-img{
+    top: 125px;
+}
