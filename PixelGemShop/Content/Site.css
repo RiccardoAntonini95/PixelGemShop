@@ -266,8 +266,13 @@ input:focus {
     }
 }
 
-/*STARS*/
+/*MODAL REVIEWS*/
 
+.modal-content {
+    background-color: var(--primary-color);
+}
+
+/*STARS*/
 .star {
     fill: grey;
     transition: fill 0.2s;

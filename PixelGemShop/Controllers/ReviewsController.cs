@@ -22,12 +22,6 @@ namespace PixelGemShop.Controllers
             return View(reviewsList);
         }
 
-        public ActionResult AddReview(int? id)
-        {
-            ViewBag.ProductId = id; //ricontrolla perchè non uso model
-            return View(); 
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddReview([Bind(Include = "IdUser, Rate, Description, IdProduct")] Reviews Review)

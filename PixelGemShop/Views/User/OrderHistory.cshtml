@@ -4,6 +4,12 @@
 }
 
 <h2>Order History</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert" role="alert">
+        @TempData["Message"]
+    </div>
+}
 
 @foreach (var order in Model)
 {
@@ -17,7 +23,7 @@
         </div>
         @foreach (var orderDetail in order.OrderDetails)
         {
-            <div class="row">
+            <div class="d-flex flex-wrap">
                 <div class="col-4">
                     <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="w-100 h-100" width="30" height="30" alt="product-image" />
                 </div>
@@ -26,9 +32,54 @@
                     <p class="text-gold">@orderDetail.ProductPrice &euro;</p>
                     @if (orderDetail.IdProduct != null)
                     {
-                        @Html.ActionLink("Leave a feedback", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, new { @class = "btn glow-on-hover" })
-                        //modale per recensione qua
+                        <button type="button" class="btn glow-on-hover" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                            Leave a feedback
+                        </button>
                     }
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h3 class="modal-title fs-5 text-gold" id="reviewModalLabel">Add a review for this article</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("AddReview", "Reviews"))
+                            {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" name="IdUser" value="@User.Identity.Name" />
+                                <input type="hidden" name="IdProduct" value="@orderDetail.IdProduct" />
+                                <div class="rating">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1)">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(2)">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(3)">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(4)">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(5)">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                </div>
+                                <input type="hidden" id="Rate" name="Rate" value="" />
+                                <input type="text" id="Description" name="Description" value="" placeholder="Your review..." />
+                                @*@Html.EditorFor(model => model.Description)*@
+                                <div>
+                                    <button type="submit" class="btn glow-on-hover">Submit</button>
+                                    <button type="button" class="btn btn-darker-accent glow-on-hover" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -36,4 +87,29 @@
     </div>
 }
 @Html.ActionLink("Back to profile", "Index", "User", new { @class = "btn glow-on-hover" })
+
+@section scripts {
+    <script>
+        const stars = document.querySelectorAll('.star')
+        const ratings = document.querySelectorAll('.rating input');
+        const ratingValueField = document.getElementById('Rate');
+
+        function setRating(value) {
+            ratingValueField.value = value;
+            highlightStars(value);
+        }
+
+        function highlightStars(value) {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < value) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+}
 
