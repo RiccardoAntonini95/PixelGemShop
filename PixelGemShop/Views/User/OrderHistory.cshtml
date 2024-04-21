@@ -9,7 +9,11 @@
 {
     <div class="border border-black">
         <div>
-            <p>Order placed on: <br /> @order.DateOrder</p>
+            <p>
+                <span class="text-gold fw-bold">Order placed on: </span>
+                <br />
+                @order.DateOrder
+            </p>
         </div>
         @foreach (var orderDetail in order.OrderDetails)
         {
@@ -22,7 +26,7 @@
                     <p class="text-gold">@orderDetail.ProductPrice &euro;</p>
                     @if (orderDetail.IdProduct != null)
                     {
-                    @Html.ActionLink("Leave a feedback", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct}, new { @class = "btn glow-on-hover" })
+                        @Html.ActionLink("Leave a feedback", "AddReview", "Reviews", new { area = "", id = orderDetail.IdProduct }, new { @class = "btn glow-on-hover" })
                         //modale per recensione qua
                     }
                 </div>

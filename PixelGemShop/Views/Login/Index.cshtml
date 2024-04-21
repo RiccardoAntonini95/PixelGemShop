@@ -35,7 +35,7 @@
 }
 else
 {
-    <h2>You're logged in as User number @User.Identity.Name </h2>
+    <h2>You're already logged</h2>
     <p>Logout: </p>
     <form action="@Url.Action("Logout", "Login")" method="post">
         @Html.AntiForgeryToken()

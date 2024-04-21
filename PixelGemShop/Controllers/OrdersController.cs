@@ -54,11 +54,6 @@ namespace PixelGemShop.Controllers
                 var productSelled = db.Products.Find(product.IdProduct);
                 if(productSelled != null)
                 {
-                    if(productSelled.Stock < product.Quantity)
-                    {
-                        TempData["Message"] = "We're sorry, but the quantity you've selected for this product exceeds the current availability. Please adjust the quantity or reach out to us to check the updated availability. Thank you for your understanding.";
-                        return RedirectToAction("Index", "Cart");
-                    }
                     productSelled.Stock -= product.Quantity;
                     db.Entry(productSelled).State = EntityState.Modified;
                     db.SaveChanges();

@@ -37,6 +37,12 @@ namespace PixelGemShop.Controllers
                 return RedirectToAction("Index", "Login");
 
             }
+            var productToAdd = db.Products.Find(idProduct);
+            if(quantity > productToAdd.Stock)
+            {
+                TempData["Message"] = "We're sorry, but the quantity you've selected for this product exceeds the current availability. Please adjust the quantity or reach out to us to check the updated availability. Thank you for your understanding.";
+                return Redirect(returnUrl);
+            }
             int currentUser = int.Parse(User.Identity.Name);
             int currentCart = db.Carts.FirstOrDefault(c => c.IdUser == currentUser).IdCart;
             var existingCartItem = db.CartItems.FirstOrDefault(c => c.IdProduct == idProduct && c.IdCart == currentCart);
