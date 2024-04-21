@@ -13,7 +13,40 @@ namespace PixelGemShop.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                TempData["Message"] = "You must log out before you can log in with another account.";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string email, string password)
+        {
+            using (var db = new DBContext())
+            {
+                if (ModelState.IsValid)
+                {
+                    try
+                    {   //query select che cerca l'utente giusto
+                        var loggedUser = db.Users.Where(model => model.Email == email && model.Password == password).FirstOrDefault();
+                        if (loggedUser != null)
+                        {
+                            FormsAuthentication.SetAuthCookie(loggedUser.IdUser.ToString(), true);//salvo l'id ottenuto dalla select e lo passo al rolemanager
+                            TempData["Message"] = "Logged in successfully";
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return View(ex.Message);
+                    }
+                }
+                TempData["Message"] = "Invalid credentials";
+                return View();
+            }
         }
         public ActionResult SignUp()
         {
@@ -51,44 +84,6 @@ namespace PixelGemShop.Controllers
                 return View();
             }
 
-        }
-
-        public ActionResult Login()
-        {
-            if (HttpContext.User.Identity.IsAuthenticated) 
-            {
-                TempData["Message"] = "You must log out before you can log in with another account.";
-                return RedirectToAction("Index", "Login");
-            }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(string email, string password)
-        {
-            using (var db = new DBContext())
-            {
-                if (ModelState.IsValid)
-                {
-                    try
-                    {   //query select che cerca l'utente giusto
-                        var loggedUser = db.Users.Where(model => model.Email == email && model.Password == password).FirstOrDefault();
-                        if (loggedUser != null)
-                        {
-                            FormsAuthentication.SetAuthCookie(loggedUser.IdUser.ToString(), true);//salvo l'id ottenuto dalla select e lo passo al rolemanager
-                            TempData["Message"] = "Logged in successfully";
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        return View(ex.Message);
-                    }
-                }
-                TempData["Message"] = "Invalid credentials";
-                return RedirectToAction("Index", "Login");
-            }
         }
 
         [HttpPost]
