@@ -73,20 +73,20 @@
                         {
                             <li class="text-smoke">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline text-gold">@firstNameUser</a></li>
                         }
-                    <li>
-                        <div class="position-relative">
-                            @if (cartCounter != 0)
-                            {
-                                <div class="position-absolute cart-counter">@cartCounter</div>
-                            }
+                        <li>
+                            <div class="position-relative">
+                                @if (cartCounter != 0)
+                                {
+                                    <div class="position-absolute cart-counter">@cartCounter</div>
+                                }
 
-                            <a href="@Url.Action("Index","Cart")" class="text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
-                                    <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </li>
+                                <a href="@Url.Action("Index","Cart")" class="text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
+                                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
                         <li class="text-smoke">
                             <form action="@Url.Action("Logout", "Login")" method="post">
                                 @Html.AntiForgeryToken()
@@ -100,7 +100,7 @@
     </nav>
     <div class="text-smoke body-container">
         @RenderBody()
-        <hr class="text-gold"/>
+        <hr class="text-gold" />
         <footer class="text-gold">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
