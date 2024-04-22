@@ -13,13 +13,12 @@
             <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
             <div class="card-body">
                 <h5 class="card-title">@product.Name</h5>
-                <p class="text-gold">Average rating: @product.AverageRating</p>
                 <input type="hidden" class="average-rating" value="@product.AverageRating" />
                 <div class="stars-container">
-                    <!-- Aggiungi un identificatore unico per ogni stella -->
+                <p class="text-gold mb-0">Average rating</p>
                     @for (int i = 1; i <= 5; i++)
                     {
-                        <svg class="starProva" id="star@i" viewBox="0 0 24 24" width="20" height="20">
+                        <svg class="star-avg-rating" viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                         </svg>
                     }
@@ -70,28 +69,7 @@
 </div>
 
 @section scripts{
-    <script>
-        var avgRatingInput = document.querySelectorAll('.average-rating');
-        var starContainers = document.querySelectorAll('.stars-container');
-
-        var numStars = [];
-
-        // Calcola il numero di stelle piene arrotondate per ogni input di media
-        for (let i = 0; i < avgRatingInput.length; i++) {
-            var value = avgRatingInput[i].value.replace(',', '.');
-            numStars[i] = Math.round(parseFloat(value));
-        }
-
-        // Itera su ogni container di stelle e colora le stelle corrispondenti
-        starContainers.forEach(function (container, index) {
-            var stars = container.querySelectorAll('.starProva');
-
-            // Colora le prime numStars stelle nel container corrente
-            for (var i = 0; i < numStars[index]; i++) {
-                stars[i].querySelector('path').setAttribute('fill', 'gold');
-            }
-        });
-    </script>
+    <script src="~/Scripts/avgStars.js" defer></script>
 }
 
 
