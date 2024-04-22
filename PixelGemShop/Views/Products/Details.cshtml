@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
 <div class="d-flex flex-wrap">
     <div class="col-12 col-md-4">
         <img src="@Url.Content("~/Uploads/" + Model.Image)" alt="Product Image" class="img-fluid position-sticky details-img" />
@@ -42,10 +39,10 @@
         </p>
         <hr />
         <div id="reviews">
-            <h4 class="text-gold fw-bold">Reviews</h4>
+            <h4 class="text-gold fw-bold">Reviews (@ViewBag.ReviewsCount)</h4>
             @foreach (var review in ViewBag.Reviews)
             {
-                <div class="border border-black">
+                <div class="border border-secondary my-3">
                     <p class="fw-bold">
                         @review.Users.Username
                         <br />
@@ -55,12 +52,9 @@
                     <p>@review.Description</p>
                 </div>
             }
+            @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn glow-on-hover" })
         </div>
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 

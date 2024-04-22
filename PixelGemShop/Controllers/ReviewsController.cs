@@ -12,13 +12,16 @@ namespace PixelGemShop.Controllers
     {
         private DBContext db = new DBContext();
         // GET: Reviews/1
-        public ActionResult Index(int? id) //ARRIVA ID USER non può essere facoltativo
+        public ActionResult Index(int? id)
         {
             var reviewsList = db.Reviews
                     .Include(r => r.Users)
                     .Include(r => r.Products)
                     .Where(r => r.IdUser == id)
                     .ToList();
+
+            var reviewsCount = reviewsList.Count();
+            ViewBag.ReviewsCount = reviewsCount;
             return View(reviewsList);
         }
 

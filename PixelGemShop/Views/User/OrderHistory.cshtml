@@ -3,7 +3,6 @@
     ViewBag.Title = "OrderHistory";
 }
 
-<h2>Order History</h2>
 @if (TempData["Message"] != null)
 {
     <div class="alert" role="alert">
@@ -11,16 +10,15 @@
     </div>
 }
 
+<h2 class="text-gold fw-bold text-center display-5">Order History (@ViewBag.OrdersCount)</h2>
 @foreach (var order in Model)
 {
-    <div class="border border-black">
-        <div>
-            <p>
+    <div class="border border-secondary my-3">
+            <p class="text-center">
                 <span class="text-gold fw-bold">Order placed on: </span>
                 <br />
                 @order.DateOrder
             </p>
-        </div>
         @foreach (var orderDetail in order.OrderDetails)
         {
             <div class="d-flex flex-wrap">
@@ -28,8 +26,8 @@
                     <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="w-100 h-100" width="30" height="30" alt="product-image" />
                 </div>
                 <div class="col-8">
-                    <p>@orderDetail.Quantity x @orderDetail.ProductName</p>
-                    <p class="text-gold">@orderDetail.ProductPrice &euro;</p>
+                    <p class="fs-4">@orderDetail.Quantity x @orderDetail.ProductName</p>
+                    <p class="text-gold">@(orderDetail.ProductPrice * orderDetail.Quantity) &euro;</p>
                     @if (orderDetail.IdProduct != null)
                     {
                         <button type="button" class="btn glow-on-hover" data-bs-toggle="modal" data-bs-target="#reviewModal">
@@ -71,7 +69,7 @@
                                     </svg>
                                 </div>
                                 <input type="hidden" id="Rate" name="Rate" value="" />
-                                <input type="text" id="Description" name="Description" value="" placeholder="Your review..." />
+                                <textarea id="Description" name="Description" placeholder="Your review..."></textarea>
                                 <div>
                                     <button type="submit" class="btn glow-on-hover">Submit</button>
                                     <button type="button" class="btn btn-darker-accent glow-on-hover" data-bs-dismiss="modal">Close</button>

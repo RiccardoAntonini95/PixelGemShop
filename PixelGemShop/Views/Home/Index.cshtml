@@ -8,8 +8,6 @@
         </div>
     }
 
-    @*TAG SEMANTICI HEADER, SECTION, ASIDE ECC.*@
-
     @*HERO*@
     <div id="hero" class="text-center position-relative d-flex justify-content-center align-items-center">
         <video src="@Url.Content("~/Uploads/gem-video.mp4")" id="youtube" autoplay muted loop></video>
@@ -18,7 +16,7 @@
 
     @*IN PRIMO PIANO*@
     <section class="text-center">
-        <h2 class="fw-bold text-gold">Editor's Choice</h2>
+        <h2 class="fw-bold text-gold display-5">Editor's Choice</h2>
         <div class="editors-choice">
             <div class="row gx-2 m-0">
                 @for (int i = 0; i < 4; i++)
@@ -72,8 +70,10 @@
                                     @Html.AntiForgeryToken();
                                     <input type="hidden" name="IdProduct" value="@product.IdProduct" />
                                     <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
-                                    <label for="quantity-@i">Quantity: </label>
-                                    <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <label for="quantity-@i">Quantity: </label>
+                                        <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity">
+                                    </div>
                                     <button class="btn glow-on-hover" type="submit">Add to cart</button>
                                     @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
                                 }
@@ -88,7 +88,7 @@
 
     @*OFFERTE*@
     <section class="text-center">
-        <h2 class="fw-bold text-gold">Savings Zone</h2>
+        <h2 class="fw-bold text-gold display-5">Savings Zone</h2>
         <div class="savings">
             <div class="row m-0">
                 @for (int i = 0; i < Math.Min(ViewBag.savings.Count, 6); i++)   //cicla il numero minimo di prodotti tra viewbag e 6
@@ -112,7 +112,6 @@
                                 <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
                                 <br>
                                 <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
-                                @*Questo valore serve nel carrello*@
                             </p>
                             @if (product.Stock < 10 && product.Stock > 0)
                             {
@@ -150,19 +149,19 @@
     </section>
 
 
-    @*SHOP BY CATEGORIES  TODO: da rivedere il mobile e i link *@
+    @*SHOP BY CATEGORIES*@
     <section>
         <div class="shop-by-categories text-center">
-            <h2 class="fw-bold text-gold">Shop by categories</h2>
+            <h2 class="fw-bold text-gold display-5">Shop by categories</h2>
             <div class="row g-0 gap-2">
                 <div class="category-container videogames col">
-                    @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link" })
+                    @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
                 <div class="category-container console col">
-                    @Html.ActionLink("Console", "Index", "Console", new { area = "" }, new { @class = "category-link" })
+                    @Html.ActionLink("Console", "Index", "Console", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
                 <div class="category-container accessories col">
-                    @Html.ActionLink("Accessories", "Index", "Accessories", new { area = "" }, new { @class = "category-link" })
+                    @Html.ActionLink("Accessories", "Index", "Accessories", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
             </div>
         </div>

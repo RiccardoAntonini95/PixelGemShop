@@ -190,7 +190,21 @@ nav {
     transition: transform 0.3s ease;
 }
 
-input {
+/*INPUT FIELDS*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input, textarea {
     background: linear-gradient(59deg, rgba(74,31,103,1) 0%, rgba(5,25,35,1) 49%, rgba(83,2,79,1) 100%);
     color: var(--text-color);
     outline-color: blueviolet;
@@ -265,11 +279,23 @@ input:focus {
         background-position: 0 0;
     }
 }
-
 /*MODAL REVIEWS*/
 
 .modal-content {
     background-color: var(--primary-color);
+}
+
+#Description {
+    overflow: hidden;
+    height: 100px;
+}
+
+#Description:focus {
+    height: 200px;
+    transition: 0.3s;
+    outline-color: blueviolet;
+    border-color: blueviolet;
+    border-radius: 0px
 }
 
 /*STARS*/
@@ -311,18 +337,6 @@ input:focus {
     font-weight: bold;
     padding: 3em;
 }
-
-/*EDITOR'S CHOICE SECTION*/
-/*.editors-choice {
-    background-image: url("./Images/editorschoice.jpg");
-    background-size: cover;
-}*/
-
-/*SAVINGS SECTION*/
-/*.savings {
-    background-image: url("./Images/savings.jpg");
-    background-size: cover;
-}*/
 
 /*CATEGORIES SECTION*/
 .category-container {

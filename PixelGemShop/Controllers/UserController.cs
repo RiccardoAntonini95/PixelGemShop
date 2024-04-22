@@ -60,6 +60,8 @@ namespace PixelGemShop.Controllers
         {
             var currentUser = int.Parse(User.Identity.Name);
             var orders = db.Orders.Where(o => o.IdUser == currentUser).Include(o => o.OrderDetails).OrderByDescending(o => o.DateOrder);
+            var ordersCount = orders.Count();
+            ViewBag.OrdersCount = ordersCount;
             return View(orders.ToList());
         }
     }

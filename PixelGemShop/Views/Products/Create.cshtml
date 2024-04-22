@@ -4,14 +4,12 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="d-flex flex-column align-items-center text-center">
-        <h4 class="fw-bold text-gold">Products</h4>
+        <h4 class="fw-bold text-gold display-5">Add a product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "fw-bold text-gold" })
@@ -19,7 +17,7 @@
         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "fw-bold text-gold" })
-        @Html.EditorFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
 
         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "fw-bold text-gold" })
