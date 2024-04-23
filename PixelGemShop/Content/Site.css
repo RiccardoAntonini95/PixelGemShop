@@ -113,6 +113,10 @@ nav {
     color: var(--text-color)!important;
 }
 
+.navbar-toggler{
+    background-color: var(--accent-color)!important;
+}
+
 .cart-counter {
     width: 16px;
     height: 16px;
@@ -335,13 +339,29 @@ input:focus {
     top: 125px;
 }
 
+/*MEDIA QUERIES*/
+@media screen and (max-width: 576px){
+    .navbar-brand img{
+        width: 100px;
+    }
+
+    .login-list {
+        display: contents;
+        font-size: 0.9em;
+    }
+
+    .log-btn {
+        font-size: 0.8em;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    .card-img-top{
+    .card-img-top {
         height: 110px;
         object-fit: contain;
     }
 
-    .category-container{
+    .category-container {
         padding: 2rem 2rem;
     }
 
@@ -356,5 +376,9 @@ input:focus {
     .cart-img {
         width: 125px;
         height: 75px;
+    }
+
+    .login-list{
+        display: contents;
     }
 }

@@ -29,16 +29,12 @@
         <div class="loader"></div>
     </div>
 
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm position-sticky top-0">
+    <nav class="navbar navbar-expand-md position-sticky top-0">
         <div class="container">
             <a href="@Url.Action("Index", "Home")" class="navbar-brand glow-on-hover">
                 <img src="@Url.Content("~/Content/Images/logo-pixelgem.png")" width="150" alt="pixelgem-logo" />
             </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <div class="collapse navbar-collapse d-md-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link glow-on-hover" })</li>
                     <li>@Html.ActionLink("Accessories", "Index", "Accessories", new { area = "" }, new { @class = "nav-link glow-on-hover" })</li>
@@ -56,42 +52,46 @@
                         <li>@Html.ActionLink("Cart", "Index", "Cart", new { area = "" }, new { @class = "nav-link glow-on-hover" })</li>
                     }
                 </ul>
-                @if (authCookie == null)
-                {
-                    <ul class="navbar-nav text-smoke">
-                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn glow-on-hover" })</li>
-                    </ul>
-                }
-                @if (authCookie != null)
-                {
-                    <ul class="navbar-nav align-items-center gap-3">
-                        @if (firstNameUser != "")
-                        {
-                            <li class="text-smoke">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline text-gold">@firstNameUser</a></li>
-                        }
-                        <li>
-                            <div class="position-relative">
-                                @if (cartCounter != 0)
-                                {
-                                    <div class="position-absolute cart-counter">@cartCounter</div>
-                                }
-
-                                <a href="@Url.Action("Index","Cart")" class="text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
-                                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="text-smoke">
-                            <form action="@Url.Action("Logout", "Login")" method="post">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-darker-accent glow-on-hover">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                }
             </div>
+            @if (authCookie == null)
+            {
+                <ul class="navbar-nav text-smoke login-list">
+                    <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "btn glow-on-hover log-btn" })</li>
+                </ul>
+            }
+            @if (authCookie != null)
+            {
+                <ul class="navbar-nav align-items-center gap-3 login-list">
+                    @if (firstNameUser != "")
+                    {
+                        <li class="text-smoke">Welcome <a href="@Url.Action("Index","User")" class="text-decoration-underline text-gold">@firstNameUser</a></li>
+                    }
+                    <li>
+                        <div class="position-relative">
+                            @if (cartCounter != 0)
+                            {
+                                <div class="position-absolute cart-counter">@cartCounter</div>
+                            }
+
+                            <a href="@Url.Action("Index","Cart")" class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
+                                    <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="text-smoke">
+                        <form action="@Url.Action("Logout", "Login")" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-darker-accent glow-on-hover log-btn">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            }
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
     <div class="text-smoke body-container">
