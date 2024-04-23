@@ -15,21 +15,18 @@
     {
         @Html.AntiForgeryToken();
         <div class="container d-flex align-content-center align-items-center flex-column text-smoke">
-            <h2 class="text-center mb-5">Welcome, sign up or login if you own an account</h2>
-            <div class="form-group text-white text-center mb-3">
-                @Html.LabelFor(model => model.Email, "E-mail: ")
-                @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail" })
-                @Html.ValidationMessageFor(model => model.Email, "", new { style = "color: red; font-weight: bold;" })
-            </div>
-            <div class="form-group text-white text-center mb-3">
-                @Html.LabelFor(model => model.Password, "Password: ")
-                @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
-                @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
-            </div>
-            <div>
-                <button type="submit" class="btn glow-on-hover">Login</button>
-                @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "btn btn-darker-accent m-2 glow-on-hover" })
-            </div>
+            <h2 class="text-gold fw-bold">Login</h2>
+
+            @Html.LabelFor(model => model.Email, "E-mail: ")
+            @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { style = "color: red; font-weight: bold;" })
+
+            @Html.LabelFor(model => model.Password, "Password: ")
+            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
+
+            <p>Don't have an account? @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "text-gold glow-on-hover" })</p>
+            <button type="submit" class="btn glow-on-hover">Login</button>
         </div>
     }
 }

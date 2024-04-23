@@ -129,32 +129,6 @@ nav {
     color: var(--secondary-color)
 }
 
-@keyframes gemAnimation {
-    0% {
-        stroke: #9966ff;
-    }
-
-    25% {
-        stroke: #ff00ff;
-    }
-
-    50% {
-        stroke: #800080;
-    }
-
-    75% {
-        stroke: #702963;
-    }
-
-    100% {
-        stroke: #9b30ff;
-    }
-}
-
-#navGem {
-    animation: gemAnimation 2s infinite alternate;
-}
-
 .cart-counter {
     width: 16px;
     height: 16px;
@@ -212,6 +186,7 @@ input, textarea {
     border-radius: 20px;
     width: 100%;
     max-width: 200px;
+    margin-bottom: 1em;
 }
 
 input:focus {
@@ -323,7 +298,7 @@ input:focus {
     z-index: -1;
 }
 
-#youtube {
+#hero-video {
     position: absolute;
     top: 0;
     left: 0;
