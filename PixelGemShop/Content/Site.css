@@ -1,24 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap');
 
-.lato-regular {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.lato-bold {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.lato-bold-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-}
-
-
 /*VARIABLES*/
 :root {
     --primary-color: #051923;
@@ -51,9 +32,8 @@ body {
     background-color: var(--darker-accent-color);
 }
 
-
-section {
-    margin-top: 2em;
+.primary-bg {
+    background-color: var(--primary-color);
 }
 
 /*PRELOADER*/
@@ -129,6 +109,10 @@ nav {
     color: var(--secondary-color)
 }
 
+.nav-link:hover{
+    color: var(--text-color)!important;
+}
+
 .cart-counter {
     width: 16px;
     height: 16px;
@@ -144,7 +128,6 @@ nav {
 
 /*CARDS*/
 .card {
-    background-color: var(--primary-color);
     overflow: hidden;
     padding: 0;
 }
@@ -155,7 +138,7 @@ nav {
 }
 
 .card-img-top {
-    height: 160px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -194,6 +177,11 @@ input:focus {
     outline-color: blueviolet;
     border-color: blueviolet;
     border-radius: 0px
+}
+
+.quantity-input{
+    max-width: 90px;
+    text-align: center;
 }
 
 .glow-on-hover {
@@ -255,7 +243,6 @@ input:focus {
     }
 }
 /*MODAL REVIEWS*/
-
 .modal-content {
     background-color: var(--primary-color);
 }
@@ -313,6 +300,7 @@ input:focus {
     padding: 3em;
 }
 
+
 /*CATEGORIES SECTION*/
 .category-container {
     padding: 5rem 2rem;
@@ -342,15 +330,31 @@ input:focus {
     object-fit: cover;
 }
 
-/*CART*/
-@media (max-width: 768px){
-    .cart-img{
-        width: 125px;
-        height: 75px;
-    }
-}
-
 /*DETAILS PAGE*/
 .details-img{
     top: 125px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-img-top{
+        height: 110px;
+        object-fit: contain;
+    }
+
+    .category-container{
+        padding: 2rem 2rem;
+    }
+
+    #hero {
+        height: 30vh;
+    }
+
+    #heroText {
+        font-size: 1.2em;
+    }
+
+    .cart-img {
+        width: 125px;
+        height: 75px;
+    }
 }

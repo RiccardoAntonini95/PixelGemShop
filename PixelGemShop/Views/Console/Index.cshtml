@@ -5,10 +5,10 @@
 
 
 <div class="row gx-2 m-0 text-center">
-    <h2 class="text-gold fw-bold display-5">Console</h2>
+    <h2 class="text-gold fw-bold display-5 mb-3">Console</h2>
     @foreach (var product in Model)
     {
-        <div class="card col-6 col-md-3 text-smoke">
+        <div class="card col-6 col-md-3 text-smoke primary-bg">
             <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
             <div class="card-body">
                 <h5 class="card-title">@product.Name</h5>
@@ -58,7 +58,7 @@
                         <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
                         <div class="d-flex flex-column align-items-center">
                             <label for="quantity">Quantity: </label>
-                            <input type="number" class="quantity-input" id="quantity" min="1" name="quantity">
+                            <input type="number" class="quantity-input" id="quantity" min="1" name="quantity" value="1">
                         </div>
                         <button class="btn glow-on-hover" type="submit">Add to cart</button>
                         @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })

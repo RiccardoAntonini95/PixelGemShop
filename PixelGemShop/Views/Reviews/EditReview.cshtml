@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="d-flex flex-column align-items-center text-center">
-        <h4 class="fw-bold text-gold display-5">Edit Review</h4>
+        <h4 class="fw-bold text-gold display-5 mb-3">Edit Review</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdReview)
         @Html.HiddenFor(model => model.IdUser)

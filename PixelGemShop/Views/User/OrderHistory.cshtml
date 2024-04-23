@@ -10,10 +10,10 @@
     </div>
 }
 
-<h2 class="text-gold fw-bold text-center display-5">Order History (@ViewBag.OrdersCount)</h2>
+<h2 class="text-gold fw-bold text-center display-5 mb-3">Order History (@ViewBag.OrdersCount)</h2>
 @foreach (var order in Model)
 {
-    <div class="border border-secondary my-3">
+    <div class="border border-secondary my-3 primary-bg">
             <p class="text-center">
                 <span class="text-gold fw-bold">Order placed on: </span>
                 <br />
@@ -40,7 +40,7 @@
             <!-- Modal -->
             <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content text-center">
+                    <div class="modal-content text-center primary-bg">
                         <div class="modal-header">
                             <h3 class="modal-title fs-5 text-gold" id="reviewModalLabel">Add a review for this article</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -51,7 +51,7 @@
                                 @Html.AntiForgeryToken();
                                 <input type="hidden" name="IdUser" value="@User.Identity.Name" />
                                 <input type="hidden" name="IdProduct" value="@orderDetail.IdProduct" />
-                                <div class="rating">
+                                <div class="rating mb-3">
                                     <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>

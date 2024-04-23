@@ -1,5 +1,4 @@
 ﻿@model PixelGemShop.Models.Products
-
 <main>
     @if (TempData["Message"] != null)  //Feedback positivo riuscita operazione
     {
@@ -10,91 +9,91 @@
 
     @*HERO*@
     <div id="hero" class="text-center position-relative d-flex justify-content-center align-items-center">
-        <video src="@Url.Content("~/Uploads/gem-video.mp4")" id="hero-video" autoplay muted loop></video>
+        <video src="@Url.Content("~/Uploads/gem-video.mp4")" id="hero-video" autoplay muted loop preload="none"></video>
         <h1 id="heroText" class="text-gold">"Unearth Gaming Gems at Pixel Gem Shop: Where Every Purchase is Sparkling Treasure!"</h1>
     </div>
 
     @*IN PRIMO PIANO*@
-<section class="text-center">
-    <h2 class="fw-bold text-gold display-5">Editor's Choice</h2>
-    <div class="editors-choice">
-        <div class="row gx-2 m-0">
-            @for (int i = 0; i < 4; i++)
-            {
-                var product = ViewBag.editorsChoice[i];
-                <div class="card col-6 col-md-3 text-smoke">
-                    <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
-                    <div class="card-body">
-                        <h5 class="card-title">@product.Name</h5>
-                        <input type="hidden" class="average-rating" value="@product.AverageRating" />
-                        <div class="stars-container">
-                            <p class="text-gold mb-0">Average rating</p>
-                            @for (int index = 1; index <= 5; index++)
+    <section class="text-center my-4">
+        <h2 class="fw-bold text-gold display-5 mb-3">Editor's Choice</h2>
+        <div class="editors-choice">
+            <div class="row gx-2 m-0">
+                @for (int i = 0; i < 4; i++)
+                {
+                    var product = ViewBag.editorsChoice[i];
+                    <div class="card col-6 col-md-3 text-smoke mb-2 primary-bg">
+                        <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <input type="hidden" class="average-rating" value="@product.AverageRating" />
+                            <div class="stars-container">
+                                <p class="text-gold mb-0">Average rating</p>
+                                @for (int index = 1; index <= 5; index++)
+                                {
+                                    <svg class="star-avg-rating" viewBox="0 0 24 24" width="20" height="20">
+                                        <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
+                                    </svg>
+                                }
+                            </div>
+                            @if (product.DiscountPercentage == null)
                             {
-                                <svg class="star-avg-rating" viewBox="0 0 24 24" width="20" height="20">
-                                    <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
-                                </svg>
+                                <p class="card-text">@product.Price&euro;</p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
+                                    <br>
+                                    <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
+
+                                </p>
+                            }
+                            @if (product.Stock < 10 && product.Stock > 0)
+                            {
+                                <p class="text-warning">Only @product.Stock available!</p>
+                            }
+                            @if (product.Stock == 0)
+                            {
+                                <p class="text-danger">Product out of stock</p>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn glow-on-hover" })
                             }
                         </div>
-                        @if (product.DiscountPercentage == null)
+                        @if (product.Stock != 0)
                         {
-                            <p class="card-text">@product.Price&euro;</p>
-                        }
-                        else
-                        {
-                            <p>
-                                <span class="text-decoration-line-through">@product.Price&euro;</span> -@product.DiscountPercentage%
-                                <br>
-                                <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
-
-                            </p>
-                        }
-                        @if (product.Stock < 10 && product.Stock > 0)
-                        {
-                            <p class="text-warning">Only @product.Stock available!</p>
-                        }
-                        @if (product.Stock == 0)
-                        {
-                            <p class="text-danger">Product out of stock</p>
-                        }
-                        @if (User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn glow-on-hover" })
+                            <div class="card-footer">
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    <input type="hidden" name="IdProduct" value="@product.IdProduct" />
+                                    <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
+                                    <div class="d-flex flex-column align-items-center">
+                                        <label for="quantity-@i">Quantity: </label>
+                                        <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity" value="1">
+                                    </div>
+                                    <button class="btn glow-on-hover" type="submit">Add to cart</button>
+                                    @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
+                                }
+                            </div>
                         }
                     </div>
-                    @if (product.Stock != 0)
-                    {
-                        <div class="card-footer">
-                            @using (Html.BeginForm("AddToCart", "Cart"))
-                            {
-                                @Html.AntiForgeryToken();
-                                <input type="hidden" name="IdProduct" value="@product.IdProduct" />
-                                <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
-                                <div class="d-flex flex-column align-items-center">
-                                    <label for="quantity-@i">Quantity: </label>
-                                    <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity">
-                                </div>
-                                <button class="btn glow-on-hover" type="submit">Add to cart</button>
-                                @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
-                            }
-                        </div>
-                    }
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     @*OFFERTE*@
-    <section class="text-center">
-        <h2 class="fw-bold text-gold display-5">Savings Zone</h2>
+    <section class="text-center my-4">
+        <h2 class="fw-bold text-gold display-5 mb-3">Savings Zone</h2>
         <div class="savings">
             <div class="row m-0">
                 @for (int i = 0; i < Math.Min(ViewBag.savings.Count, 6); i++)   //cicla il numero minimo di prodotti tra viewbag e 6
                 {
                     var product = ViewBag.savings[i];
-                    <div class="col-4 col-md-2 card text-smoke">
+                    <div class="col-6 col-sm-4 col-lg-2 card text-smoke primary-bg">
                         <img src="@Url.Content("~/Uploads/" + product.Image)" class="card-img-top" alt="product-image" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
@@ -135,8 +134,11 @@
                                     @Html.AntiForgeryToken();
                                     <input type="hidden" name="IdProduct" value="@product.IdProduct" />
                                     <input type="hidden" name="returnUrl" value="@Request.Url.PathAndQuery" />
-                                    <label for="quantity-@i">Quantity: </label>
-                                    <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <label for="quantity-@i">Quantity: </label>
+                                        <input type="number" class="quantity-input" id="quantity-@i" min="1" name="quantity" value="1">
+                                    </div>
+
                                     <button class="btn glow-on-hover" type="submit">Add to cart</button>
                                     @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
                                 }
@@ -150,9 +152,9 @@
 
 
     @*SHOP BY CATEGORIES*@
-    <section>
+    <section class="my-4">
         <div class="shop-by-categories text-center">
-            <h2 class="fw-bold text-gold display-5">Shop by categories</h2>
+            <h2 class="fw-bold text-gold display-5 mb-3">Shop by categories</h2>
             <div class="row g-0 gap-2">
                 <div class="category-container videogames col">
                     @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
@@ -169,7 +171,7 @@
 
 
     @*CAROUSEL*@
-    <section>
+    <section class="my-4">
         <div id="carouselContainer" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
