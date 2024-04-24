@@ -11,18 +11,18 @@
         <h3 class="display-3">@Html.DisplayFor(model => model.Name)</h3>
         <hr />
             <div class="d-flex flex-wrap">
-                <div class="col-6 col-md-3 col-lg-2 text-end">
+                <div class="col-3 col-md-3 col-lg-2 text-end">
                     <p class="fw-bold text-gold">Recommended price:</p>
                 </div>
-                <div class="col-6 col-md-9 col-lg-10">
+                <div class="col-3 col-md-9 col-lg-10">
                     <p class="ps-1">@Html.DisplayFor(model => model.Price)&euro;</p>
                 </div>
                 @if (Model.DiscountPercentage != null)
                 {
-                    <div class="col-6 col-md-3 col-lg-2 text-end">
+                    <div class="col-3 col-md-3 col-lg-2 text-end">
                         <p class="fw-bold text-gold">Discounted Price:</p>
                     </div>
-                    <div class="col-6 col-md-9 col-lg-10">
+                    <div class="col-3 col-md-9 col-lg-10">
                         <p class="ps-1">
                             <span class="text-decoration-line-through">@Model.Price&euro;</span> -@Model.DiscountPercentage%
                             <br>

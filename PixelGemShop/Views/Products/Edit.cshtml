@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
 @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -21,7 +18,7 @@
         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "fw-bold text-gold" })
-        @Html.EditorFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
 
         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "fw-bold text-gold" })

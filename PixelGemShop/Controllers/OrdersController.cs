@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace PixelGemShop.Controllers
 {
+    [Authorize (Roles = "User, Admin")]
     public class OrdersController : Controller
     {
         private DBContext db = new DBContext();

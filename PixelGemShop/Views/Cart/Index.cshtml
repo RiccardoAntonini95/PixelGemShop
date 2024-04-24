@@ -34,9 +34,9 @@
                         {
                             @Html.AntiForgeryToken();
                             <input type="hidden" value="@product.IdProduct" name="idProductMod" />
-                            <button type="submit" class="btn btn-darker-accent glow-on-hover" name="decrement">-</button>
+                            <button type="submit" class="btn btn-darker-accent glow-on-hover px-3" name="decrement">-</button>
                             @product.Quantity
-                            <button type="submit" class="btn glow-on-hover" name="increment">+</button>
+                            <button type="submit" class="btn glow-on-hover px-3" name="increment">+</button>
                         }
                     </p>
                     @if (product.Products.DiscountPercentage == null)

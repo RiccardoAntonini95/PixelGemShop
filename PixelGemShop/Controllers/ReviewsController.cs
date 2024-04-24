@@ -8,6 +8,7 @@ using System.Data.Entity;
 
 namespace PixelGemShop.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class ReviewsController : Controller
     {
         private DBContext db = new DBContext();

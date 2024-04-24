@@ -25,7 +25,7 @@
                 <div class="col-4">
                     <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="w-100 h-100" width="30" height="30" alt="product-image" />
                 </div>
-                <div class="col-8">
+                <div class="col-8 ps-2">
                     <p class="fs-4">@orderDetail.Quantity x @orderDetail.ProductName</p>
                     <p class="text-gold">@(orderDetail.ProductPrice * orderDetail.Quantity) &euro;</p>
                     @if (orderDetail.IdProduct != null)

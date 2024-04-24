@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace PixelGemShop.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class UserController : Controller
     {
         private DBContext db = new DBContext();

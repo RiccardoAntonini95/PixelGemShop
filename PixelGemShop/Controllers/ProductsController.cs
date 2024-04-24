@@ -16,6 +16,7 @@ namespace PixelGemShop.Controllers
         private DBContext db = new DBContext();
 
         // GET: Products
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Categories);
@@ -42,6 +43,7 @@ namespace PixelGemShop.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.IdCategory = new SelectList(db.Categories, "IdCategory", "ProductCategory");
@@ -50,6 +52,7 @@ namespace PixelGemShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Products products, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid) //TODO: GUARDA EDIT DI LINKEDIN PER LA MODIFICA FOTO
@@ -85,6 +88,7 @@ namespace PixelGemShop.Controllers
 
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,10 +105,9 @@ namespace PixelGemShop.Controllers
         }
 
         // POST: Products/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "IdProduct,Name,Description,Image,Stock,IdCategory,Price,DiscountPercentage")] Products products, HttpPostedFileBase Image)
         {
 
@@ -134,7 +137,6 @@ namespace PixelGemShop.Controllers
                         return View(products);
                     }
                 }
-                //BUG: se non metti nessuna foto sparisce quella che avevi
 
                 db.Entry(products).State = EntityState.Modified;
                 db.SaveChanges();
@@ -146,6 +148,7 @@ namespace PixelGemShop.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -163,6 +166,7 @@ namespace PixelGemShop.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Products products = db.Products.Find(id);

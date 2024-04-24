@@ -165,7 +165,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-input, textarea {
+input, textarea, select {
     background: linear-gradient(59deg, rgba(74,31,103,1) 0%, rgba(5,25,35,1) 49%, rgba(83,2,79,1) 100%);
     color: var(--text-color);
     outline-color: blueviolet;
@@ -174,6 +174,11 @@ input, textarea {
     width: 100%;
     max-width: 200px;
     margin-bottom: 1em;
+}
+
+option {
+    background-color: var(--darker-accent-color);
+    color: var(--text-color);
 }
 
 input:focus {
