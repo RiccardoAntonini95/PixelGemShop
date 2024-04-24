@@ -21,6 +21,7 @@
             </p>
         @foreach (var orderDetail in order.OrderDetails)
         {
+            int modalIndex = orderDetail.IdProduct.GetHashCode();
             <div class="d-flex flex-wrap">
                 <div class="col-4">
                     <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="w-100 h-100" width="30" height="30" alt="product-image" />
@@ -30,19 +31,19 @@
                     <p class="text-gold">@(orderDetail.ProductPrice * orderDetail.Quantity) &euro;</p>
                     @if (orderDetail.IdProduct != null)
                     {
-                        <button type="button" class="btn glow-on-hover" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                        <button type="button" class="btn glow-on-hover" data-bs-toggle="modal" data-bs-target="#reviewModal-@modalIndex">
                             Leave a feedback
                         </button>
                     }
                 </div>
             </div>
-
+            // onclick di leave a feedback genera il modale da js
             <!-- Modal -->
-            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal fade" id="reviewModal-@modalIndex" tabindex="-1" aria-labelledby="reviewModalLabel-@modalIndex" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content text-center primary-bg">
                         <div class="modal-header">
-                            <h3 class="modal-title fs-5 text-gold" id="reviewModalLabel">Add a review for this article</h3>
+                            <h3 class="modal-title fs-5 text-gold" id="reviewModalLabel-@modalIndex">Add a review for this article</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -52,23 +53,23 @@
                                 <input type="hidden" name="IdUser" value="@User.Identity.Name" />
                                 <input type="hidden" name="IdProduct" value="@orderDetail.IdProduct" />
                                 <div class="rating mb-3">
-                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1)">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(1, @modalIndex)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>
-                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(2)">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(2, @modalIndex)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>
-                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(3)">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(3, @modalIndex)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>
-                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(4)">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(4, @modalIndex)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>
-                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(5)">
+                                    <svg class="star" viewBox="0 0 24 24" width="30" height="30" onclick="setRating(5, @modalIndex)">
                                         <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2"></path>
                                     </svg>
                                 </div>
-                                <input type="hidden" id="Rate" name="Rate" value="" />
+                                <input type="hidden" class="Rate" name="Rate" value="" />
                                 <textarea id="Description" name="Description" placeholder="Your review..."></textarea>
                                 <div>
                                     <button type="submit" class="btn glow-on-hover">Submit</button>
@@ -89,15 +90,15 @@
     <script>
         const stars = document.querySelectorAll('.star')
         const ratings = document.querySelectorAll('.rating input');
-        const ratingValueField = document.getElementById('Rate');
 
-        function setRating(value) {
+        function setRating(value, modalIndex) {
+            const ratingValueField = document.querySelector(`#reviewModal-${modalIndex} .Rate`);
             ratingValueField.value = value;
-            highlightStars(value);
+            highlightStars(value, modalIndex);
         }
 
-        function highlightStars(value) {
-            const stars = document.querySelectorAll('.star');
+        function highlightStars(value, modalIndex) {
+            const stars = document.querySelectorAll(`#reviewModal-${modalIndex} .star`);
             stars.forEach((star, index) => {
                 if (index < value) {
                     star.classList.add('active');
@@ -107,6 +108,5 @@
             });
         }
     </script>
-
 }
 
