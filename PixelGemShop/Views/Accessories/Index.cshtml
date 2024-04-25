@@ -2,7 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (TempData["Message"] != null)  //Feedback positivo riuscita operazione
+{
+    <div class="alert" role="alert">
+        @TempData["Message"]
+    </div>
+}
 
 
 <div class="row gx-2 m-0 text-center">
@@ -15,7 +20,7 @@
                 <h5 class="card-title">@product.Name</h5>
                 <input type="hidden" class="average-rating" value="@product.AverageRating" />
                 <div class="stars-container">
-                <p class="text-gold mb-0">Average rating</p>
+                    <p class="text-gold mb-0">Average rating</p>
                     @for (int i = 1; i <= 5; i++)
                     {
                         <svg class="star-avg-rating" viewBox="0 0 24 24" width="20" height="20">

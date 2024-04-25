@@ -10,31 +10,31 @@
     @Html.AntiForgeryToken();
     <div class="container d-flex align-content-center align-items-center flex-column text-center">
             @Html.LabelFor(model => model.FirstName, "Name*: ")
-            @Html.TextBoxFor(model => model.FirstName, new { placeholder = "Name" })
+            @Html.TextBoxFor(model => model.FirstName, new { placeholder = "Name.." })
             @Html.ValidationMessageFor(model => model.FirstName, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.LastName, "Surname*: ")
-            @Html.TextBoxFor(model => model.LastName, new { placeholder = "Surname" })
+            @Html.TextBoxFor(model => model.LastName, new { placeholder = "Surname.." })
             @Html.ValidationMessageFor(model => model.LastName, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Username, "Username*:  ")
-            @Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })
+            @Html.TextBoxFor(model => model.Username, new { placeholder = "Username.." })
             @Html.ValidationMessageFor(model => model.Username, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Password, "Password*: ")
-            @Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })
+            @Html.TextBoxFor(model => model.Password, new { placeholder = "Password.." })
             @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Email, "E-mail*: ")
-            @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail" })
+            @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail.." })
             @Html.ValidationMessageFor(model => model.Email, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Phone, "Phone: ")
-            @Html.TextBoxFor(model => model.Phone, new { placeholder = "Phone" })
+            @Html.TextBoxFor(model => model.Phone, new { placeholder = "Phone.." })
             @Html.ValidationMessageFor(model => model.Phone, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Address, "Address*: ")
-            @Html.TextBoxFor(model => model.Address, new { placeholder = "Address" })
+            @Html.TextBoxFor(model => model.Address, new { placeholder = "Address.." })
             @Html.ValidationMessageFor(model => model.Address, "", new { style = "color: red; font-weight: bold;" })
 
 

@@ -8,26 +8,27 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="d-flex flex-column align-items-center text-center">
-        <h4 class="fw-bold text-gold display-5 mb-3">Edit Review</h4>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdReview)
-        @Html.HiddenFor(model => model.IdUser)
-        @Html.HiddenFor(model => model.IdProduct)
+<div class="d-flex flex-column align-items-center text-center">
+    <h4 class="fw-bold text-gold display-5 mb-3">Edit Review</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdReview)
+    @Html.HiddenFor(model => model.IdUser)
+    @Html.HiddenFor(model => model.IdProduct)
 
 
-        @Html.LabelFor(model => model.Rate, "Rate: ")
-        @Html.EditorFor(model => model.Rate)
-        @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+    @Html.LabelFor(model => model.Rate, "Rate: ")
+    @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @type = "number", @step = "0.01", @max = "5.00" }})
 
-        @Html.LabelFor(model => model.Description, "Review: ")
-        @Html.TextAreaFor(model => model.Description)
-        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        <div>
-            <button class="btn glow-on-hover" type="submit">Save</button>
-            @Html.ActionLink("Back", "Index", new { id = Model.IdUser }, new { @class = "btn btn-darker-accent glow-on-hover" })
-        </div>
+    @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+
+    @Html.LabelFor(model => model.Description, "Review: ")
+    @Html.TextAreaFor(model => model.Description, new { placeholder = "Your review.." })
+    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    <div>
+        <button class="btn glow-on-hover" type="submit">Save</button>
+        @Html.ActionLink("Back", "Index", new { id = Model.IdUser }, new { @class = "btn btn-darker-accent glow-on-hover" })
     </div>
+</div>
 }
 
 

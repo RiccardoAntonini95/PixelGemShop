@@ -2,7 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (TempData["Message"] != null)  //Feedback positivo riuscita operazione
+{
+    <div class="alert" role="alert">
+        @TempData["Message"]
+    </div>
+}
 
 <div class="row gx-2 m-0 text-center">
     <h2 class="text-gold fw-bold display-5 mb-3">Console</h2>

@@ -4,9 +4,9 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="fw-bold text-gold display-5">Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<p>Are you sure you want to delete this?</p>
 <div class="col-6 col-md-4 border text-center">
     <p class="fs-2 fw-bold">@Html.DisplayFor(model => model.Name)</p>
     <img src="@Url.Content("~/Uploads/" + @Html.DisplayFor(model => model.Image))" alt="Product Image" style="max-width: 100px; max-height: 100px;" />

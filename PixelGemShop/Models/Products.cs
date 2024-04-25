@@ -21,6 +21,7 @@ namespace PixelGemShop.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Product Name")]
         public string Name { get; set; }
 
         [Required]
@@ -28,12 +29,18 @@ namespace PixelGemShop.Models
 
         public string Image { get; set; }
 
+        [Required]
+        [Display(Name = "Stock")]
         public int Stock { get; set; }
 
+        [Required]
+        [Display(Name = "Category")]
         public int IdCategory { get; set; }
 
+        [Required]
         public decimal Price { get; set; }
 
+        [Display(Name = "Discount percentage")]
         public int? DiscountPercentage { get; set; }
         public decimal? AverageRating { get; set; }
 

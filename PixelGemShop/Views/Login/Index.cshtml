@@ -18,11 +18,11 @@
             <h2 class="text-gold fw-bold mb-3">Login</h2>
 
             @Html.LabelFor(model => model.Email, "E-mail: ")
-            @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail" })
+            @Html.TextBoxFor(model => model.Email, new { placeholder = "E-mail.." })
             @Html.ValidationMessageFor(model => model.Email, "", new { style = "color: red; font-weight: bold;" })
 
             @Html.LabelFor(model => model.Password, "Password: ")
-            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+            @Html.PasswordFor(model => model.Password, new { placeholder = "Password.." })
             @Html.ValidationMessageFor(model => model.Password, "", new { style = "color: red; font-weight: bold;" })
 
             <p>Don't have an account? @Html.ActionLink("Sign Up", "SignUp", "Login", null, new { @class = "text-gold glow-on-hover" })</p>
