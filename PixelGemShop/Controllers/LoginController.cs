@@ -52,7 +52,7 @@ namespace PixelGemShop.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated) // se sei già loggato torna indietro
             {
-                TempData["Fail"] = "You must log out before you can sign up a new account";
+                TempData["Message"] = "You must log out before you can sign up a new account";
                 return RedirectToAction("Index", "Login");
             }
             return View();

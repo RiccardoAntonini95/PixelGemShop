@@ -19,6 +19,7 @@ namespace PixelGemShop.Controllers
                     .Include(r => r.Users)
                     .Include(r => r.Products)
                     .Where(r => r.IdUser == id)
+                    .OrderByDescending(r => r.IdReview)
                     .ToList();
 
             var reviewsCount = reviewsList.Count();

@@ -46,7 +46,7 @@ namespace PixelGemShop.Controllers
                     IdOrder = IdOrder,
                     Quantity = product.Quantity,
                     ProductName = product.Products.Name,
-                    ProductPrice = product.Products.Price, //TODO: e se è in sconto?
+                    ProductPrice = product.Products.Price,
                     ProductImage = product.Products.Image
                 };
                 db.OrderDetails.Add(productDetail);
@@ -66,7 +66,7 @@ namespace PixelGemShop.Controllers
                     db.SaveChanges();
                 }
             }
-            TempData["Message"] = "Thanks for purchasing!";
+            TempData["Message"] = "Thanks for your order!";
             return RedirectToAction("Index", "Cart");
         }
     }

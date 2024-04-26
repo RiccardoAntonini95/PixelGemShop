@@ -13,7 +13,7 @@
 <h2 class="text-gold fw-bold text-center display-5 mb-3">Order History (@ViewBag.OrdersCount)</h2>
 @foreach (var order in Model)
 {
-    <div class="border border-secondary my-3 primary-bg">
+    <div class="border border-secondary my-3 mx-2 primary-bg">
             <p class="text-center">
                 <span class="text-gold fw-bold">Order placed on: </span>
                 <br />
@@ -23,7 +23,7 @@
         {
             int modalIndex = orderDetail.IdProduct.GetHashCode();
             <div class="d-flex flex-wrap">
-                <div class="col-4">
+                <div class="col-4 text-center">
                     <img src="@Url.Content("~/Uploads/" + orderDetail.ProductImage)" class="cart-img" width="250" height="200" alt="product-image" />
                 </div>
                 <div class="col-8 ps-2 border">
