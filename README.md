@@ -1,5 +1,6 @@
 # Pixel Gem Shop - Sito di e-commerce a tema gaming
 
+
 ## Descrizione
 Pixel Gem Shop è un e-commerce a tema gaming che mira ad offrire agli appasionati un'esperienza di shopping intuitiva e facilita la scoperta di gemme videoludiche.
 Il sito è pensato per essere responsive e quindi fruibile anche da dispositivi mobile.
@@ -9,6 +10,25 @@ Il sito è pensato per essere responsive e quindi fruibile anche da dispositivi 
 - **Entity Framework**: Versione 6.4.4
 - **Bootstrap**: Versione 5.3.3
 
+## Funzionalità
+
+### Gestione degli Utenti
+Sistema di registrazione e accesso per gli utenti, consentendo loro di creare e gestire il proprio profilo, salvare le informazioni personali e tracciare lo storico degli ordini effettuati.
+
+### Suddivisione per ruoli utente
+Diverse funzionalità in base a chi è collegato, amministratore o utente.
+
+### Gestione del Catalogo Prodotti
+Consente agli amministratori di aggiungere, modificare ed eliminare prodotti dal catalogo, garantendo un aggiornamento costante delle offerte disponibili.
+
+### Gestione inventario prodotti
+Sistema di tracciamento stock prodotti, il sito sottolinea la poca disponibilità in magazzino del prodotto o l'assenza momentanea all'utente, inoltre alla conferma dell'ordine da parte dell'utente il prodotto viene automaticamente scalato da quelli in magazzino.
+
+### Carrello degli Acquisti
+L'utente può gestire il proprio carrello, consentendo l'aggiunta e la rimozione di prodotti, nonché la visualizzazione di un riepilogo dettagliato prima del pagamento. Inoltre il proprio carrello rimane salvato per sessioni successive, garantendo la continuità e la comodità nell'esperienza di acquisto.
+
+### Recensioni e Valutazioni
+Possibilità di lasciare recensioni e valutazioni (con annesse modifiche) sui prodotti acquistati, fornendo informazioni utili ad altri clienti.
 
 ## Configurazione del Database
 
@@ -32,26 +52,6 @@ Inoltre nel database alla tabella Users è necessario creare i record per gli ad
 2. Esplora le diverse funzionalità disponibili per amministratori e utenti.
 3. Gestisci articoli, sconti e magazzino come amministratore.
 4. Esplora il catalogo di prodotti, aggiungi articoli al carrello, conferma gli ordini e lascia recensioni come utente.
-
-## Funzionalità
-
-**Gestione degli Utenti**:
-Sistema di registrazione e accesso per gli utenti, consentendo loro di creare e gestire il proprio profilo, salvare le informazioni personali e tracciare lo storico degli ordini effettuati.
-
-**Suddivisione per ruoli utente**
-Diverse funzionalità in base a chi è collegato, amministratore o utente.
-
-**Gestione del Catalogo Prodotti**:
-Consente agli amministratori di aggiungere, modificare ed eliminare prodotti dal catalogo, garantendo un aggiornamento costante delle offerte disponibili.
-
-**Gestione inventario prodotti**:
-Sistema di tracciamento stock prodotti, il sito sottolinea la poca disponibilità in magazzino del prodotto o l'assenza momentanea all'utente, inoltre alla conferma dell'ordine da parte dell'utente il prodotto viene automaticamente scalato da quelli in magazzino.
-
-**Carrello degli Acquisti**:
-L'utente può gestire il proprio carrello, consentendo l'aggiunta e la rimozione di prodotti, nonché la visualizzazione di un riepilogo dettagliato prima del pagamento. Inoltre il proprio carrello rimane salvato per sessioni successive, garantendo la continuità e la comodità nell'esperienza di acquisto.
-
-**Recensioni e Valutazioni**:
-Possibilità di lasciare recensioni e valutazioni (con annesse modifiche) sui prodotti acquistati, fornendo informazioni utili ad altri clienti.
 
 
 ## Coming soon
