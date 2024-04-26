@@ -9,6 +9,7 @@ Il sito è pensato per essere responsive e quindi fruibile anche da dispositivi 
 - **ASP.NET MVC**: Versione 5.2.9
 - **Entity Framework**: Versione 6.4.4
 - **Bootstrap**: Versione 5.3.3
+- **Microsoft SQL Server 2019** : Per il database
 
 ## Funzionalità
 
@@ -31,6 +32,14 @@ L'utente può gestire il proprio carrello, consentendo l'aggiunta e la rimozione
 Possibilità di lasciare recensioni e valutazioni (con annesse modifiche) sui prodotti acquistati, fornendo informazioni utili ad altri clienti.
 
 ## Configurazione del Database
+
+### Prima di tutto creare un nuovo database da SQL Server Management Studio 19
+All'interno del progetto è presente una cartella di nome SQL, con al suo interno un file .sql 
+```
+CreateDatabase
+```
+per creare il database è necessario aprire il file dall'esplora risorse ed eseguirne la relativa query
+
 
 Prima di avviare l'applicazione, assicurati di configurare correttamente la connessione al database. Apri il file `web.config` (o `app.config` se stai sviluppando un'applicazione console) e trova la sezione relativa alla connection string. Assicurati di sostituire `DataSource=nome_server` con il nome corretto del server del tuo database.
 
