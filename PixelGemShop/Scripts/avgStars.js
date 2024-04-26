@@ -1,7 +1,7 @@
 ﻿var avgRatingInput = document.querySelectorAll('.average-rating');
 var starContainers = document.querySelectorAll('.stars-container');
-
 var numStars = [];
+
 
 // Calcola il numero di stelle piene arrotondate per ogni input di media
 for (let i = 0; i < avgRatingInput.length; i++) {

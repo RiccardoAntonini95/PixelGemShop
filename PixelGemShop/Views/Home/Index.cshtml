@@ -2,7 +2,7 @@
 <main>
     @if (TempData["Message"] != null) 
     {
-        <div class="alert" role="alert">
+        <div id="alertDiv" class="alert" role="alert">
             @TempData["Message"]
         </div>
     }
@@ -54,7 +54,9 @@
                             }
                             @if (product.Stock == 0)
                             {
-                                <p class="text-danger">Product out of stock</p>
+                                <div class="card-footer">
+                                  <p class="text-danger">Product out of stock</p>
+                                </div>     
                             }
                             @if (User.IsInRole("Admin"))
                             {
@@ -112,6 +114,10 @@
                                 <br>
                                 <span class="text-gold fw-bold">@(Math.Round(product.Price - (product.Price * ((decimal)product.DiscountPercentage / 100M)), 2))&euro;</span>
                             </p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn glow-on-hover" })
+                            }
                             @if (product.Stock < 10 && product.Stock > 0)
                             {
                                 <p class="text-warning">Only @product.Stock available!</p>
@@ -119,13 +125,12 @@
                             @if (product.Stock == 0)
                             {
                                 <p class="text-danger">Product out of stock</p>
-                                @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
-                            }
-                            @if (User.IsInRole("Admin"))
-                            {
-                                @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn glow-on-hover" })
                             }
                         </div>
+                        @if (product.Stock == 0)
+                        {
+                            <div class="card-footer"> @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })</div>
+                        }
                         @if (product.Stock != 0)
                         {
                             <div class="card-footer">
