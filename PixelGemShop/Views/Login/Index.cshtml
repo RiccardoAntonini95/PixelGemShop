@@ -14,7 +14,7 @@
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken();
-        <div class="container d-flex align-content-center align-items-center flex-column text-smoke">
+        <div class="container d-flex align-content-center align-items-center flex-column text-smoke my-3">
             <h2 class="text-gold fw-bold mb-3">Login</h2>
 
             @Html.LabelFor(model => model.Email, "E-mail: ")
