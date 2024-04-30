@@ -54,6 +54,10 @@
                     @Html.ActionLink("Edit", "Edit", "Products", new { id = product.IdProduct }, new { @class = "btn glow-on-hover" })
                 }
             </div>
+            @if (product.Stock == 0)
+            {
+                <div class="card-footer">@Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })</div>
+            }
             @if (product.Stock != 0)
             {
                 <div class="card-footer">
@@ -67,7 +71,6 @@
                             <input type="number" class="quantity-input" id="quantity" min="1" name="quantity" value="1">
                         </div>
                         <button class="btn glow-on-hover" type="submit">Add to cart</button>
-                        @Html.ActionLink("Details", "Details", "Products", new { id = product.IdProduct }, new { @class = "btn btn-darker-accent glow-on-hover" })
                     }
                 </div>
             }
