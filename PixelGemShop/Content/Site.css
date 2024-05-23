@@ -391,3 +391,30 @@ input:focus {
         display: contents;
     }
 }
+
+
+/*LIGHT MODE*/
+
+body.light-mode,
+body.light-mode .primary-bg,
+body.light-mode .navbar {
+    background: white;
+    color: black;
+}
+
+body.light-mode .cart-counter {
+    background: black;
+    color: white;
+}
+
+body.light-mode .text-gold, 
+body.light-mode .text-smoke,
+body.light-mode .nav-link{
+    color: black !important;
+}
+
+body.light-mode .glow-on-hover:hover,
+body.light-mode .nav-link.glow-on-hover:hover
+{
+    color: white !important;
+}
