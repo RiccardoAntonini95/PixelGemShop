@@ -343,6 +343,17 @@ input:focus {
     object-fit: cover;
 }
 
+/*FOOTER*/
+
+footer{
+    line-height: 2.2em;
+    padding-left: 1em;
+}
+
+#lightModeBtn{
+    display: block;
+}
+
 /*DETAILS PAGE*/
 .details-img{
     top: 125px;
@@ -411,6 +422,11 @@ body.light-mode .text-gold,
 body.light-mode .text-smoke,
 body.light-mode .nav-link{
     color: black !important;
+}
+
+body.light-mode #heroText,
+body.light-mode .category-link{
+    color: var(--text-color) !important;
 }
 
 body.light-mode .glow-on-hover:hover,
