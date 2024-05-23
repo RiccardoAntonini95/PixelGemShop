@@ -11,6 +11,9 @@ Il sito è pensato per essere responsive e quindi fruibile anche da dispositivi 
 - **Bootstrap**: Versione 5.3.3
 - **Microsoft SQL Server 2019** : Per il database
 
+## Novità
+- **Light Mode**: Possibilità di cambiare da tema scuro a chiaro e viceversa.
+
 ## Funzionalità
 
 ### Gestione degli Utenti
@@ -64,7 +67,6 @@ Inoltre nel database alla tabella Users è necessario creare i record per gli ad
 
 
 ## Coming soon
-- **Light Mode**: Possibilità di cambiare da tema scuro a chiaro
 - **Ricerca avanzata con filtri**
 - **Sistema di pagamento**
 
