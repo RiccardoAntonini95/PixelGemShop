@@ -318,6 +318,7 @@ input:focus {
 .category-container {
     padding: 5rem 2rem;
     background-size: cover;
+    cursor: pointer;
 }
 
 .videogames {

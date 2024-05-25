@@ -161,13 +161,13 @@
         <div class="shop-by-categories text-center">
             <h2 class="fw-bold text-gold display-5 mb-3">Shop by categories</h2>
             <div class="row g-0 gap-2">
-                <div class="category-container videogames col">
+                <div class="category-container videogames col" onclick="location.href='@Url.Action("Index", "Videogames")';">
                     @Html.ActionLink("Videogames", "Index", "Videogames", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
-                <div class="category-container console col">
+                <div class="category-container console col" onclick="location.href='@Url.Action("Index", "Console")';">
                     @Html.ActionLink("Console", "Index", "Console", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
-                <div class="category-container accessories col">
+                <div class="category-container accessories col" onclick="location.href='@Url.Action("Index", "Accessories")';">
                     @Html.ActionLink("Accessories", "Index", "Accessories", new { area = "" }, new { @class = "category-link fs-3 text-decoration-none glow-on-hover" })
                 </div>
             </div>
