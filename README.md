@@ -1,5 +1,7 @@
 # Pixel Gem Shop - Sito di e-commerce a tema gaming
 
+## Post Linkedin con video
+<a href="https://www.linkedin.com/posts/riccardo-antonini-b477212bb_fullstackdeveloper-webdevelopment-epicode-activity-7193222578377805825-X4ix?utm_source=share&utm_medium=member_desktop" target="_blank">LinkedIn Post</a>
 
 ## Descrizione
 Pixel Gem Shop è un e-commerce a tema gaming che mira ad offrire agli appasionati un'esperienza di shopping intuitiva e facilita la scoperta di gemme videoludiche.
