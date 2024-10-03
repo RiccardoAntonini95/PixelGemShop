@@ -66,9 +66,3 @@ Inoltre nel database alla tabella Users è necessario creare i record per gli ad
 2. Esplora le diverse funzionalità disponibili per amministratori e utenti.
 3. Gestisci articoli, sconti e magazzino come amministratore.
 4. Esplora il catalogo di prodotti, aggiungi articoli al carrello, conferma gli ordini e lascia recensioni come utente.
-
-
-## Coming soon
-- **Ricerca avanzata con filtri**
-- **Sistema di pagamento**
-
